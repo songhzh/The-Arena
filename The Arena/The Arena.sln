@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "The Arena", "The Arena\The Arena.vcxproj", "{016038A0-F4BA-40BF-8EB3-E452B0E60E12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x64.ActiveCfg = Debug|x64
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x64.Build.0 = Debug|x64
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x86.ActiveCfg = Debug|Win32
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x86.Build.0 = Debug|Win32
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x64.ActiveCfg = Release|x64
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x64.Build.0 = Release|x64
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x86.ActiveCfg = Release|Win32
+		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6ADAAE13-C198-4383-A021-AB292E97E1BB}
+	EndGlobalSection
+EndGlobal
