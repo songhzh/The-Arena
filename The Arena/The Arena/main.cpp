@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include "GameStateManager.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1600, 800), "The Arena");
+	window.setFramerateLimit(60);
 	//window.setKeyRepeatEnabled(false);
 
 	//Clock clock;
@@ -24,6 +26,7 @@ int main()
 				break;
 			case sf::Event::KeyPressed:
 				//cout << evt.key.code << endl;
+				break;
 			default:
 				break;
 			}
