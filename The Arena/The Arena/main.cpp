@@ -5,6 +5,8 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1600, 800), "The Arena");
 	window.setFramerateLimit(60);
+
+	GameStateManager gsm(&window);
 	//window.setKeyRepeatEnabled(false);
 
 	//Clock clock;
@@ -12,7 +14,6 @@ int main()
 
 	while (window.isOpen())
 	{
-		window.clear();
 		sf::Event evt;
 		while (window.pollEvent(evt))
 		{
@@ -32,6 +33,7 @@ int main()
 			}
 		}
 
+		window.clear();
 		//deltaTime = clock.restart().asSeconds();
 		window.display();
 	}

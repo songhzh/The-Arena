@@ -1,6 +1,6 @@
 #include "GameStateManager.h"
 
-GameStateManager::GameStateManager()
+GameStateManager::GameStateManager(sf::RenderWindow* w) : window(w)
 {
 }
 

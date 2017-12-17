@@ -6,7 +6,9 @@
 class GameStateManager
 {
 public:
-	GameStateManager();
+	GameStateManager(sf::RenderWindow* w);
 	~GameStateManager();
+private:
+	sf::RenderWindow* window;
 };
 
