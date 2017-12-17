@@ -12,7 +12,7 @@ Hitbox::~Hitbox()
 {
 }
 
-void Hitbox::update()
+void Hitbox::update(float df)
 {
 	switch (hbt)
 	{

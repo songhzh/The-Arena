@@ -14,7 +14,7 @@ class Hitbox
 public:
 	Hitbox(Player* p, hitboxType h);
 	~Hitbox();
-	void update();
+	void update(float df);
 	void onHit(Player* target);
 private:
 	hitboxType hbt;

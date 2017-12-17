@@ -56,6 +56,19 @@ void Player::updateAll(float df)
 	updateAnimation(df);
 }
 
+void Player::updateHitboxes(float df)
+{
+	for (auto& it : hurt)
+	{
+		it.update(df);
+	}
+
+	for (auto& it : hit)
+	{
+		it.update(df);
+	}
+}
+
 void Player::updateAnimation(float df)
 {
 	if (framesToUpdate > 0) return;

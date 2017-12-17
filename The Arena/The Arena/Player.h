@@ -17,6 +17,7 @@ public:
 	void updateAll(float df);
 private:
 	void move();
+	void updateHitboxes(float df);
 	void updateAnimation(float df);
 
 	sf::Vector2f pos;
@@ -27,8 +28,7 @@ private:
 	float framesToUpdate;
 	
 	std::vector<Hitbox> hurt;
-	std::vector<Hitbox> proj; // Projectile, detached from player
-	std::vector<Hitbox> flow; // Follows player
+	std::vector<Hitbox> hit;
 
 	sf::Keyboard::Key input[6];
 
