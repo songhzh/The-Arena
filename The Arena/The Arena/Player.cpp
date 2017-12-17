@@ -2,6 +2,9 @@
 
 Player::Player()
 {
+	pos = { 100, 100 };
+	vel = { 0, 0 };
+	acc = { 0, 0 };
 }
 
 Player::~Player()
@@ -9,7 +12,7 @@ Player::~Player()
 }
 
 void Player::init(int role)
-{
+{	
 	switch (role)
 	{
 	case 0:
@@ -19,6 +22,7 @@ void Player::init(int role)
 		input[RIGHT] = sf::Keyboard::D;
 		input[B1]	 = sf::Keyboard::C;
 		input[B2]	 = sf::Keyboard::V;
+		
 		break;
 	case 1:
 		input[UP]	 = sf::Keyboard::I;
@@ -31,13 +35,16 @@ void Player::init(int role)
 	default:
 		break;
 	}
-
-	currentAnimationFrame = STILL_1;
-	framesToUpdate = 30;
+	
+	/*
+	Projectile* proj = new Projectile(this);
+	projectile.push_back(proj);
+	*/
 }
 
 void Player::move()
 {
+	/*
 	bool left = sf::Keyboard::isKeyPressed(input[LEFT]);
 	bool right = sf::Keyboard::isKeyPressed(input[RIGHT]);
 
@@ -45,9 +52,10 @@ void Player::move()
 	{
 		vel.x = left ? -walkSpd : walkSpd;
 	}
+	*/
 }
 
-void Player::updateAll(float df)
+void Player::update(float df)
 {
 	move();
 	pos += vel * df;
@@ -56,34 +64,6 @@ void Player::updateAll(float df)
 	updateAnimation(df);
 }
 
-void Player::updateHitboxes(float df)
-{
-	for (auto& it : hurt)
-	{
-		it.update(df);
-	}
-
-	for (auto& it : hit)
-	{
-		it.update(df);
-	}
-}
-
 void Player::updateAnimation(float df)
 {
-	if (framesToUpdate > 0) return;
-
-	switch (currentAnimationFrame)
-	{
-	case STILL_1:
-		currentAnimationFrame = STILL_2;
-		break;
-	case STILL_2:
-		currentAnimationFrame = STILL_1;
-		break;
-	default:
-		break;
-	}
-
-	framesToUpdate -= df;
 }

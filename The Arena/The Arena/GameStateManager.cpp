@@ -12,5 +12,5 @@ GameStateManager::~GameStateManager()
 
 void GameStateManager::update(float df)
 {
-	playerList[LEFT].updateAll(df);
+	playerList[LEFT].update(df);
 }

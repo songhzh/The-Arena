@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Player.h"
+#include "PlayerManager.h"
 
 class GameStateManager
 {
@@ -13,6 +13,6 @@ public:
 	void update(float dt);
 private:
 	sf::RenderWindow* window;
-	Player playerList[2];
+	PlayerManager playerList[2];
 };
 
