@@ -3,14 +3,14 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1600, 800), "The Arena");
+	sf::RenderWindow window(sf::VideoMode(1600, 800), "The Arena", sf::Style::Titlebar | sf::Style::Close);
 	window.setFramerateLimit(60);
 
 	GameStateManager gsm(&window);
 	//window.setKeyRepeatEnabled(false);
 
-	//Clock clock;
-	//float deltaTime;
+	sf::Clock clock;
+	float deltaTime;
 
 	while (window.isOpen())
 	{
@@ -34,7 +34,8 @@ int main()
 		}
 
 		window.clear();
-		//deltaTime = clock.restart().asSeconds();
+		deltaTime = clock.restart().asSeconds();
+		gsm.update(deltaTime * 60);
 		window.display();
 	}
 

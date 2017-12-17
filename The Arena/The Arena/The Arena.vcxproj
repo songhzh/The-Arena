@@ -150,11 +150,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="Hitbox.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
