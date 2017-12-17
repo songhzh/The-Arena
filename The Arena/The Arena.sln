@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "The Arena", "The Arena\The Arena.vcxproj", "{016038A0-F4BA-40BF-8EB3-E452B0E60E12}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "The Arena", "The Arena\The Arena.vcxproj", "{D6B05B1B-0AFF-4578-BF47-F041ACC59374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +13,19 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x64.ActiveCfg = Debug|x64
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x64.Build.0 = Debug|x64
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x86.ActiveCfg = Debug|Win32
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Debug|x86.Build.0 = Debug|Win32
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x64.ActiveCfg = Release|x64
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x64.Build.0 = Release|x64
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x86.ActiveCfg = Release|Win32
-		{016038A0-F4BA-40BF-8EB3-E452B0E60E12}.Release|x86.Build.0 = Release|Win32
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Debug|x64.ActiveCfg = Debug|x64
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Debug|x64.Build.0 = Debug|x64
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Debug|x86.ActiveCfg = Debug|Win32
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Debug|x86.Build.0 = Debug|Win32
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Release|x64.ActiveCfg = Release|x64
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Release|x64.Build.0 = Release|x64
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Release|x86.ActiveCfg = Release|Win32
+		{D6B05B1B-0AFF-4578-BF47-F041ACC59374}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6ADAAE13-C198-4383-A021-AB292E97E1BB}
+		SolutionGuid = {BCF65D18-305B-4CF4-8446-FC4AC4C319C7}
 	EndGlobalSection
 EndGlobal
