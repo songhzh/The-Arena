@@ -16,9 +16,14 @@ public:
 	~PlayerManager();
 	void init(Role r);
 	void update(float df);
+	void draw(sf::RenderWindow* w);
+	void keyPressed();
 private:
+	int getCombo();
+
 	Player* player;
-	//AnimationContainer currentFrame;
+	InputManager* im;
+	AnimationContainer currentFrame;
 	std::vector<Hitbox*> hurtbox;
 	std::vector<Hitbox*> follower;
 	std::vector<Hitbox*> projectile;
