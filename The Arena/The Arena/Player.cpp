@@ -13,29 +13,6 @@ Player::~Player()
 
 void Player::init(int r)
 {	
-	switch (r)
-	{
-	case 0:
-		input[UP]	 = sf::Keyboard::W;
-		input[DOWN]  = sf::Keyboard::S;
-		input[LEFT]  = sf::Keyboard::A;
-		input[RIGHT] = sf::Keyboard::D;
-		input[B1]	 = sf::Keyboard::C;
-		input[B2]	 = sf::Keyboard::V;
-		
-		break;
-	case 1:
-		input[UP]	 = sf::Keyboard::I;
-		input[DOWN]  = sf::Keyboard::K;
-		input[LEFT]  = sf::Keyboard::J;
-		input[RIGHT] = sf::Keyboard::L;
-		input[B1]	 = sf::Keyboard::Period;
-		input[B2]	 = sf::Keyboard::Slash;
-		break;
-	default:
-		break;
-	}
-	
 	/*
 	Projectile* proj = new Projectile(this);
 	projectile.push_back(proj);

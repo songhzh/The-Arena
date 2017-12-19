@@ -16,8 +16,12 @@ public:
 	~PlayerManager();
 	void init(Role r);
 	void update(float df);
+	void keyPressed();
 private:
+	int getInput();
+
 	Player* player;
+	InputManager* im;
 	AnimationContainer currentFrame;
 	std::vector<Hitbox*> hurtbox;
 	std::vector<Hitbox*> follower;

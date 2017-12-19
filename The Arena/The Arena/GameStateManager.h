@@ -13,7 +13,5 @@ public:
 private:
 	sf::RenderWindow* window;
 	PlayerManager playerList[2];
-
-	PlayerManager::Role getKeyPlayer(sf::Keyboard::Key k);
 };
 

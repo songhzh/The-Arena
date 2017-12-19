@@ -27,7 +27,7 @@ int main()
 				break;
 			case sf::Event::KeyPressed:
 				gsm.keyPressed(evt.key.code);
-				std::cout << evt.key.code << std::endl;
+				//std::cout << evt.key.code << std::endl;
 				break;
 			default:
 				break;
