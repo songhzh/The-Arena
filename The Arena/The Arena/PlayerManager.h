@@ -16,9 +16,10 @@ public:
 	~PlayerManager();
 	void init(Role r);
 	void update(float df);
+	void draw(sf::RenderWindow* w);
 	void keyPressed();
 private:
-	int getInput();
+	int getCombo();
 
 	Player* player;
 	InputManager* im;

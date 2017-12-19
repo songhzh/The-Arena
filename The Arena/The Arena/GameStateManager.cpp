@@ -14,6 +14,7 @@ GameStateManager::~GameStateManager()
 void GameStateManager::update(float df)
 {
 	playerList[PlayerManager::Role::LEFT].update(df);
+	playerList[PlayerManager::Role::LEFT].draw(window);
 }
 
 void GameStateManager::keyPressed(sf::Keyboard::Key k)

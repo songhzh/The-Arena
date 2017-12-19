@@ -18,9 +18,16 @@ void PlayerManager::init(Role r)
 
 void PlayerManager::update(float df)
 {
-	player->update(df);
 	im->update(df);
-	getInput();
+	player->update(df, im->getDir());
+	//getCombo();
+}
+
+void PlayerManager::draw(sf::RenderWindow* w)
+{
+	sf::RectangleShape rect(sf::Vector2f(160, 380));
+	rect.setPosition(player->getPos().x, player->getPos().y);
+	w->draw(rect);
 }
 
 void PlayerManager::keyPressed()
@@ -28,7 +35,7 @@ void PlayerManager::keyPressed()
 	im->getInput();
 }
 
-int PlayerManager::getInput()
+int PlayerManager::getCombo()
 {
 	if (im->hasCommand(im->up_m | im->left_m))
 	{

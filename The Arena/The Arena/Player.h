@@ -9,13 +9,14 @@ public:
 	Player();
 	~Player();
 	void init(int r);
-	void update(float df);
+	void update(float df, int dir);
+	sf::Vector2f getPos();
 private:
 	sf::Vector2f pos;
 	sf::Vector2f vel;
 	sf::Vector2f acc;
 
-	void move();
+	void walk(int dir);
 	void updateAnimation(float df);
 
 	float walkSpd = 20;

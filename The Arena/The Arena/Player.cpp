@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	pos = { 100, 100 };
+	pos = { 100, 350 };
 	vel = { 0, 0 };
 	acc = { 0, 0 };
 }
@@ -19,28 +19,25 @@ void Player::init(int r)
 	*/
 }
 
-void Player::move()
+void Player::update(float df, int dir)
 {
-	/*
-	bool left = sf::Keyboard::isKeyPressed(input[LEFT]);
-	bool right = sf::Keyboard::isKeyPressed(input[RIGHT]);
-
-	if (left ^ right)
-	{
-		vel.x = left ? -walkSpd : walkSpd;
-	}
-	*/
-}
-
-void Player::update(float df)
-{
-	move();
-	pos += vel * df;
+	walk(dir);
 	vel += acc * df;
-
+	pos += vel * df;
+	
 	updateAnimation(df);
 }
 
 void Player::updateAnimation(float df)
 {
+}
+
+void Player::walk(int dir)
+{
+	pos.x += walkSpd * dir;
+}
+
+sf::Vector2f Player::getPos()
+{
+	return pos;
 }

@@ -92,3 +92,16 @@ bool InputManager::hasCommand(int c)
 	}
 	return false;
 }
+
+int InputManager::getDir()
+{
+	bool left = sf::Keyboard::isKeyPressed(input[LEFT]);
+	bool right = sf::Keyboard::isKeyPressed(input[RIGHT]);
+
+	if (left ^ right)
+	{
+		return left ? -1 : 1;
+	}
+
+	return 0;
+}
