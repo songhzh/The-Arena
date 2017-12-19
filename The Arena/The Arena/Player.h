@@ -5,14 +5,14 @@
 
 class Player
 {
-	enum { UP, DOWN, LEFT, RIGHT, B1, B2 };
-
 public:
 	Player();
 	~Player();
-	void init(int role);
+	void init(int r);
 	void update(float df);
 private:
+	enum Control { UP, DOWN, LEFT, RIGHT, B1, B2, ERROR };
+
 	sf::Vector2f pos;
 	sf::Vector2f vel;
 	sf::Vector2f acc;

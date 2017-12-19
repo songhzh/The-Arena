@@ -9,9 +9,9 @@ PlayerManager::~PlayerManager()
 {
 }
 
-void PlayerManager::init(int role)
+void PlayerManager::init(Role r)
 {
-	player->init(role);
+	player->init(r);
 }
 
 void PlayerManager::update(float df)

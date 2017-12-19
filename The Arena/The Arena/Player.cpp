@@ -11,9 +11,9 @@ Player::~Player()
 {
 }
 
-void Player::init(int role)
+void Player::init(int r)
 {	
-	switch (role)
+	switch (r)
 	{
 	case 0:
 		input[UP]	 = sf::Keyboard::W;

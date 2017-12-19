@@ -3,17 +3,18 @@
 #include <SFML/Graphics.hpp>
 
 #include "AnimationContainer.h"
+#include "InputManager.h"
 #include "Hitbox.h"
 #include "Player.h"
 
 class PlayerManager
 {
-	enum { UP, DOWN, LEFT, RIGHT, B1, B2 };
-
 public:
+	enum Role { LEFT, RIGHT, ERROR };
+
 	PlayerManager();
 	~PlayerManager();
-	void init(int role);
+	void init(Role r);
 	void update(float df);
 private:
 	Player* player;
