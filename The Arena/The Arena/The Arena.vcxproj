@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationContainer.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Hitbox.cpp" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationContainer.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Hitbox.h" />

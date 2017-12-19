@@ -7,7 +7,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	GameStateManager gsm(&window);
-	//window.setKeyRepeatEnabled(false);
+	window.setKeyRepeatEnabled(false);
 
 	sf::Clock clock;
 	float deltaTime;
@@ -26,7 +26,8 @@ int main()
 				//std::cout << evt.text.unicode << std::endl;;
 				break;
 			case sf::Event::KeyPressed:
-				//cout << evt.key.code << endl;
+				gsm.keyPressed(evt.key.code);
+				std::cout << evt.key.code << std::endl;
 				break;
 			default:
 				break;

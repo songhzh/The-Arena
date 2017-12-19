@@ -5,14 +5,15 @@
 
 class GameStateManager
 {
-	enum { LEFT, RIGHT };
-
 public:
 	GameStateManager(sf::RenderWindow* w);
 	~GameStateManager();
 	void update(float dt);
+	void keyPressed(sf::Keyboard::Key k);
 private:
 	sf::RenderWindow* window;
 	PlayerManager playerList[2];
+
+	PlayerManager::Role getKeyPlayer(sf::Keyboard::Key k);
 };
 
