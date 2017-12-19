@@ -3,6 +3,7 @@
 PlayerManager::PlayerManager()
 {
 	player = new Player;
+	//currentFrame = AnimationContainer();
 }
 
 PlayerManager::~PlayerManager()

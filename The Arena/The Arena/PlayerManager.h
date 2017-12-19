@@ -18,7 +18,7 @@ public:
 	void update(float df);
 private:
 	Player* player;
-	AnimationContainer currentFrame;
+	//AnimationContainer currentFrame;
 	std::vector<Hitbox*> hurtbox;
 	std::vector<Hitbox*> follower;
 	std::vector<Hitbox*> projectile;
