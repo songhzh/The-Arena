@@ -1,28 +1,32 @@
 #include "AnimationContainer.h"
-#include <SFML/Graphics/Rect.hpp>
 
-AnimationContainer::AnimationContainer(sf::Texture texture1) {
-	this->texture = texture1;
-	sprite = sf::Sprite(texture);
-
-	verticalTextureInterval = texture.getSize().y / verticalTextureNum;
+AnimationContainer::AnimationContainer()
+{
 }
 
-void AnimationContainer::animationIdle(int textureNum1) {
-	textureNum = textureNum1;
+AnimationContainer::~AnimationContainer()
+{
+}
 
-	textureInterval = texture.getSize().x / textureNum;
+void AnimationContainer::init(sf::Texture texture1, int duration)
+{
+	texture = texture1;
+	sprite = sf::Sprite(texture);
+	textureNum = duration;
 }
 
 void AnimationContainer::setCurrentAnimation(int choice)
 {
-	this->currentAnimation = choice;
+	currentAnimation = choice;
 }
 
 void AnimationContainer::getFrame()
 {
+	int textureInterval = texture.getSize().x / textureNum;
+	int verticalTextureInterval = texture.getSize().y / verticalTextureNum;
+
 	for (int i = 0; i < textureNum; i++) {
-		rectangle = sf::IntRect(i * textureInterval, currentAnimation * verticalTextureInterval, textureInterval, verticalTextureInterval);
+		sf::IntRect rectangle(i * textureInterval, currentAnimation * verticalTextureInterval, textureInterval, verticalTextureInterval);
 		sprite.setTextureRect(rectangle);
 	}
 }

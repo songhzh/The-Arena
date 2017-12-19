@@ -4,6 +4,8 @@ PlayerManager::PlayerManager()
 {
 	player = new Player;
 	im = new InputManager;
+	sf::Texture r;
+	currentFrame.init(r, 1);
 }
 
 PlayerManager::~PlayerManager()
