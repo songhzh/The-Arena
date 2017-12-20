@@ -2,8 +2,8 @@
 
 GameStateManager::GameStateManager(sf::RenderWindow* w) : window(w)
 {
-	playerList[PlayerManager::Role::LEFT].init(PlayerManager::Role::LEFT);
-	//playerList[Player::Role::RIGHT].init(Player::Role::RIGHT);
+	playerList[InputManager::Role::PL].init(InputManager::Role::PL);
+	//playerList[Player::Role::PR].init(Player::Role::PR);
 	//playerList[P2].init(P2);
 }
 
@@ -13,8 +13,8 @@ GameStateManager::~GameStateManager()
 
 void GameStateManager::update()
 {
-	playerList[PlayerManager::Role::LEFT].update();
-	playerList[PlayerManager::Role::LEFT].draw(window);
+	playerList[InputManager::Role::PL].update();
+	playerList[InputManager::Role::PL].draw(window);
 }
 
 void GameStateManager::keyPressed(sf::Keyboard::Key k)
@@ -25,12 +25,13 @@ void GameStateManager::keyPressed(sf::Keyboard::Key k)
 		k == sf::Keyboard::D ||
 		k == sf::Keyboard::C ||
 		k == sf::Keyboard::V)
-			playerList[PlayerManager::Role::LEFT].keyPressed();
-	else if (k == sf::Keyboard::I ||
+			playerList[InputManager::Role::PL].keyPressed();
+	else if (
+		k == sf::Keyboard::I ||
 		k == sf::Keyboard::K ||
 		k == sf::Keyboard::J ||
 		k == sf::Keyboard::L ||
 		k == sf::Keyboard::Period ||
 		k == sf::Keyboard::Slash)
-			playerList[PlayerManager::Role::RIGHT].keyPressed();
+			playerList[InputManager::Role::PR].keyPressed();
 }

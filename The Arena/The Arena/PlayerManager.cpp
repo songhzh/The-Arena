@@ -2,14 +2,14 @@
 
 PlayerManager::PlayerManager()
 {
-	currentFrame.init("Resources/Textures/vish_sheet.png", 2, 1);
+	anim::load_vishnu_idle(currentFrame);
 }
 
 PlayerManager::~PlayerManager()
 {
 }
 
-void PlayerManager::init(Role r)
+void PlayerManager::init(InputManager::Role r)
 {
 	player.init(r);
 	im.init(r);

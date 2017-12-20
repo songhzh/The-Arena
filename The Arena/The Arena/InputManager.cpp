@@ -10,11 +10,11 @@ InputManager::~InputManager()
 {
 }
 
-void InputManager::init(int r)
+void InputManager::init(Role r)
 {
 	switch (r)
 	{
-	case 0:
+	case PL:
 		input[UP]		= sf::Keyboard::W;
 		input[DOWN]		= sf::Keyboard::S;
 		input[LEFT]		= sf::Keyboard::A;
@@ -22,7 +22,7 @@ void InputManager::init(int r)
 		input[B1]		= sf::Keyboard::C;
 		input[B2]		= sf::Keyboard::V;
 		break;
-	case 1:
+	case PR:
 		input[UP]		= sf::Keyboard::I;
 		input[DOWN]		= sf::Keyboard::K;
 		input[LEFT]		= sf::Keyboard::J;
@@ -51,6 +51,19 @@ void InputManager::update()
 	}
 }
 
+void InputManager::printInput()
+{
+	int k = prevInput.front().keys;
+	int up = (k | up_m) == k;
+	int down = (k | down_m) == k;
+	int left = (k | left_m) == k;
+	int right = (k | right_m) == k;
+	int b1 = (k | b1_m) == k;
+	int b2 = (k | b2_m) == k;
+
+	printf("[%d][%d][%d][%d][%d][%d]\n", up, down, left, right, b1, b2);
+}
+
 void InputManager::getInput()
 {
 	if (cooldown > 0) return;
@@ -74,6 +87,8 @@ void InputManager::getInput()
 			break;
 		}
 	}
+
+	printInput();
 }
 
 int InputManager::getCurrentInput()
@@ -111,11 +126,12 @@ int InputManager::getDir()
 {
 	bool left = sf::Keyboard::isKeyPressed(input[LEFT]);
 	bool right = sf::Keyboard::isKeyPressed(input[RIGHT]);
+	bool down = sf::Keyboard::isKeyPressed(input[DOWN]);
 
 	if (left ^ right)
 	{
 		lastDir = left ? -1 : 1;
 	}
 
-	return left || right ? lastDir : 0;
+	return (left || right) && !down ? lastDir : 0;
 }

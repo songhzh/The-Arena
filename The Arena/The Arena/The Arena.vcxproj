@@ -150,6 +150,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationContainer.cpp" />
+    <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="FrameContainer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
@@ -159,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationContainer.h" />
+    <ClInclude Include="Animations.h" />
+    <ClInclude Include="FrameContainer.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="GameStateManager.h" />

@@ -6,7 +6,8 @@
 class InputManager
 {
 public:
-	enum Control { UP, DOWN, LEFT, RIGHT, B1, B2, ERROR };
+	enum Control { UP, DOWN, LEFT, RIGHT, B1, B2 };
+	enum Role { PL, PR };
 
 	const int up_m		= 1 << UP;
 	const int down_m	= 1 << DOWN;
@@ -17,7 +18,7 @@ public:
 
 	InputManager();
 	~InputManager();
-	void init(int r);
+	void init(Role r);
 	void update();
 	void getInput();
 	bool hasCommand(int c);
@@ -26,11 +27,12 @@ private:
 	struct Input { int keys; float frame; };
 
 	int getCurrentInput();
+	void printInput();
 
 	sf::Keyboard::Key input[6];
-	float COMBO_LIMIT = 30;
+	const float COMBO_LIMIT = 30;
 	float cooldown;
-	float COOLDOWN_MAX = 3;
+	const float COOLDOWN_MAX = 3;
 	std::deque<Input> prevInput;
 	int lastDir;
 };

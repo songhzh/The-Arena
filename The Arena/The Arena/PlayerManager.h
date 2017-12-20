@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "AnimationContainer.h"
+#include "Animations.h"
 #include "InputManager.h"
 #include "Hitbox.h"
 #include "Player.h"
@@ -10,11 +10,9 @@
 class PlayerManager
 {
 public:
-	enum Role { LEFT, RIGHT, ERROR };
-
 	PlayerManager();
 	~PlayerManager();
-	void init(Role r);
+	void init(InputManager::Role r);
 	void update();
 	void draw(sf::RenderWindow* w);
 	void keyPressed();
