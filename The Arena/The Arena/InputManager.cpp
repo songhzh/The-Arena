@@ -37,7 +37,8 @@ void InputManager::init(int r)
 
 void InputManager::update()
 {
-	//std::cout << prevInput.size() << std::endl;
+	if (cooldown > 0) cooldown--;
+
 	for (std::deque<Input>::iterator it = prevInput.begin(); it != prevInput.end(); it++)
 	{
 		it->frame--;
@@ -48,17 +49,30 @@ void InputManager::update()
 			return;
 		}
 	}
-
-	if (cooldown > 0) cooldown--;
 }
 
 void InputManager::getInput()
 {
-	if (cooldown == 0)
+	if (cooldown > 0) return;
+	
+	Input i = { getCurrentInput(), COMBO_LIMIT };
+	prevInput.push_front(i);
+	cooldown = COOLDOWN_MAX;
+
+	if (prevInput.front().keys | left_m | right_m)
 	{
-		Input i = { getCurrentInput(), COMBO_LIMIT };
-		prevInput.push_front(i);
-		cooldown = COOLDOWN_MAX;
+		switch (lastDir)
+		{
+		case -1:
+			lastDir = prevInput.front().keys & right_m ? 1 : -1;
+			break;
+		case 1:
+			lastDir = prevInput.front().keys & left_m ? -1 : 1;
+			break;
+		default:
+			lastDir = -1;
+			break;
+		}
 	}
 }
 
@@ -100,8 +114,8 @@ int InputManager::getDir()
 
 	if (left ^ right)
 	{
-		return left ? -1 : 1;
+		lastDir = left ? -1 : 1;
 	}
 
-	return 0;
+	return left || right ? lastDir : 0;
 }

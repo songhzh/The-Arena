@@ -32,5 +32,6 @@ private:
 	float cooldown;
 	float COOLDOWN_MAX = 3;
 	std::deque<Input> prevInput;
+	int lastDir;
 };
 

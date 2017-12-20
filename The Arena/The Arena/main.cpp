@@ -29,6 +29,10 @@ int main()
 				gsm.keyPressed(evt.key.code);
 				//std::cout << evt.key.code << std::endl;
 				break;
+			case sf::Event::LostFocus:
+				break;
+			case sf::Event::GainedFocus:
+				break;
 			default:
 				break;
 			}
