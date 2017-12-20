@@ -9,13 +9,13 @@ public:
 	AnimationContainer();
 	~AnimationContainer();
 	void init(std::string loc, int duration, int vtn);
-	void nextFrame(float df);
+	void nextFrame();
 	void setCurrentAnimation(int choice); // Choose animation, index starts at zero.
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
-	double currentFrame;
+	int currentFrame;
 
 	int currentAnimation; // Chooses which animation is needed (vertical choice)
 						  // 0 - idle, 1 - movement, 2 - etc...

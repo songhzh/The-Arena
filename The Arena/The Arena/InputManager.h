@@ -18,7 +18,7 @@ public:
 	InputManager();
 	~InputManager();
 	void init(int r);
-	void update(float df);
+	void update();
 	void getInput();
 	bool hasCommand(int c);
 	int getDir();

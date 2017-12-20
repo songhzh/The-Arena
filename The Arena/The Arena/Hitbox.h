@@ -12,7 +12,7 @@ class Hitbox
 public:
 	Hitbox();
 	virtual ~Hitbox();
-	virtual void update(float df);
+	virtual void update();
 	virtual void onHit(Player* target);
 	virtual void dbTest() {}
 protected:
@@ -26,7 +26,7 @@ protected:
 class Projectile : public Hitbox
 {
 public:
-	void update(float df);
+	void update();
 	void onHit(Player* target);
 	void dbTest();
 private:

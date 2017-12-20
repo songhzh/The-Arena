@@ -35,12 +35,12 @@ void InputManager::init(int r)
 	}
 }
 
-void InputManager::update(float df)
+void InputManager::update()
 {
 	std::cout << prevInput.size() << std::endl;
 	for (std::deque<Input>::iterator it = prevInput.begin(); it != prevInput.end(); it++)
 	{
-		it->frame -= df;
+		it->frame--;
 		
 		if (it->frame < 0)
 		{
@@ -49,7 +49,7 @@ void InputManager::update(float df)
 		}
 	}
 
-	cooldown > 0 ? cooldown -= df : cooldown = 0;
+	cooldown > 0 ? cooldown-- : cooldown = 0;
 }
 
 void InputManager::getInput()

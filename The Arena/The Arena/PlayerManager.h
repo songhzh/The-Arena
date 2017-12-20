@@ -15,7 +15,7 @@ public:
 	PlayerManager();
 	~PlayerManager();
 	void init(Role r);
-	void update(float df);
+	void update();
 	void draw(sf::RenderWindow* w);
 	void keyPressed();
 private:

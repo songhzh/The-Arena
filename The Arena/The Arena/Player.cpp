@@ -19,17 +19,17 @@ void Player::init(int r)
 	*/
 }
 
-void Player::update(float df, int dir)
+void Player::update(int dir)
 {
 	walk(dir);
 
-	vel += acc * df;
-	pos += vel * df;
+	vel += acc;
+	pos += vel;
 	
-	updateAnimation(df);
+	updateAnimation();
 }
 
-void Player::updateAnimation(float df)
+void Player::updateAnimation()
 {
 }
 

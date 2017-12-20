@@ -9,7 +9,7 @@ public:
 	Player();
 	~Player();
 	void init(int r);
-	void update(float df, int dir);
+	void update(int dir);
 	sf::Vector2f getPos();
 private:
 	sf::Vector2f pos;
@@ -17,7 +17,7 @@ private:
 	sf::Vector2f acc;
 
 	void walk(int dir);
-	void updateAnimation(float df);
+	void updateAnimation();
 
 	float walkSpd = 20;
 };

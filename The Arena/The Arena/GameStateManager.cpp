@@ -11,9 +11,9 @@ GameStateManager::~GameStateManager()
 {
 }
 
-void GameStateManager::update(float df)
+void GameStateManager::update()
 {
-	playerList[PlayerManager::Role::LEFT].update(df);
+	playerList[PlayerManager::Role::LEFT].update();
 	playerList[PlayerManager::Role::LEFT].draw(window);
 }
 

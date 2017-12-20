@@ -12,7 +12,7 @@ Hitbox::~Hitbox()
 {
 }
 
-void Hitbox::update(float df)
+void Hitbox::update()
 {
 	std::cout << "Hitbox update" << std::endl;
 }
@@ -21,7 +21,7 @@ void Hitbox::onHit(Player* target)
 {
 }
 
-void Projectile::update(float df)
+void Projectile::update()
 {
 	std::cout << "Projectile update" << std::endl;
 }

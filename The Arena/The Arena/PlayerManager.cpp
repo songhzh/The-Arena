@@ -18,11 +18,11 @@ void PlayerManager::init(Role r)
 	im->init(r);
 }
 
-void PlayerManager::update(float df)
+void PlayerManager::update()
 {
-	im->update(df);
-	player->update(df, im->getDir());
-	currentFrame.nextFrame(df);
+	im->update();
+	player->update(im->getDir());
+	currentFrame.nextFrame();
 	//getCombo();
 }
 

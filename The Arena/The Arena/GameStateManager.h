@@ -8,7 +8,7 @@ class GameStateManager
 public:
 	GameStateManager(sf::RenderWindow* w);
 	~GameStateManager();
-	void update(float dt);
+	void update();
 	void keyPressed(sf::Keyboard::Key k);
 private:
 	sf::RenderWindow* window;

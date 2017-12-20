@@ -9,8 +9,8 @@ int main()
 	GameStateManager gsm(&window);
 	window.setKeyRepeatEnabled(false);
 
-	sf::Clock clock;
-	float deltaTime;
+	//sf::Clock clock;
+	//float deltaTime;
 
 	while (window.isOpen())
 	{
@@ -35,8 +35,8 @@ int main()
 		}
 
 		window.clear();
-		deltaTime = clock.restart().asSeconds();
-		gsm.update(deltaTime * 60);
+		//deltaTime = clock.restart().asSeconds();
+		gsm.update();
 		window.display();
 	}
 
