@@ -2,7 +2,7 @@
 
 InputManager::InputManager()
 {
-	cooldown = 0;
+	inputTime = 0;
 }
 
 
@@ -37,22 +37,26 @@ void InputManager::init(Role r)
 
 void InputManager::update()
 {
-	if (cooldown > 0) cooldown--;
+	if (inputTime > 0)
+		inputTime--;
 
 	for (std::deque<Input>::iterator it = prevInput.begin(); it != prevInput.end(); it++)
-	{
-		it->frame--;
-		
+	{	
 		if (it->frame < 0)
 		{
 			prevInput.erase(it, prevInput.end());
 			return;
 		}
+		it->frame--;
 	}
+
+	//std::cout << prevInput.size() << std::endl;
 }
 
 void InputManager::printInput()
 {
+	if (prevInput.size() < 1) return;
+
 	int k = prevInput.front().keys;
 	int up = (k | up_m) == k;
 	int down = (k | down_m) == k;
@@ -66,12 +70,16 @@ void InputManager::printInput()
 
 void InputManager::getInput()
 {
-	if (cooldown > 0) return;
-	
-	Input i = { getCurrentInput(), COMBO_LIMIT };
-	prevInput.push_front(i);
-	cooldown = COOLDOWN_MAX;
+	if (inputTime == 0)
+	{
+		inputTime = INPUT_TIME_MAX;
+		Input i = { 0 , 0 };
+		prevInput.push_front(i);
+	}
+		
+	prevInput.front() = { prevInput.front().keys | getCurrentInput(), COMBO_LIMIT };
 
+	if (prevInput.size() < 1) return;
 	if (prevInput.front().keys | left_m | right_m)
 	{
 		switch (lastDir)
@@ -102,24 +110,11 @@ int InputManager::getCurrentInput()
 		sf::Keyboard::isKeyPressed(input[B2]) * b2_m;
 }
 
-bool InputManager::hasCommand(int c)
+bool InputManager::hasCommand(int c, int idx)
 {
-	if (prevInput.size() < 1) return false;
-	/*
-	for (int i = 5; i >= 0; i--)
-	{
-		std::cout << ((prevInput.front().keys >> i) & 1) ;
-	}
-	std::cout << std::endl;
-	*/
+	if (prevInput.size() <= idx) return false;
 
-	//std::cout << c << " " << (prevInput.front().keys | c) << " " << prevInput.front().keys << std::endl;
-	if ((prevInput.front().keys | c) == prevInput.front().keys)
-	{
-		prevInput.pop_front();
-		return true;
-	}
-	return false;
+	return prevInput[idx].keys == c;
 }
 
 int InputManager::getDir()

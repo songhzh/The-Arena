@@ -21,7 +21,7 @@ public:
 	void init(Role r);
 	void update();
 	void getInput();
-	bool hasCommand(int c);
+	bool hasCommand(int c, int idx);
 	int getDir();
 private:
 	struct Input { int keys; float frame; };
@@ -31,8 +31,8 @@ private:
 
 	sf::Keyboard::Key input[6];
 	const float COMBO_LIMIT = 30;
-	float cooldown;
-	const float COOLDOWN_MAX = 3;
+	float inputTime;
+	const float INPUT_TIME_MAX = 1;
 	std::deque<Input> prevInput;
 	int lastDir;
 };

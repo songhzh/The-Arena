@@ -2,6 +2,7 @@
 
 PlayerManager::PlayerManager()
 {
+	comboCd = 0;
 	anim::load_vishnu_idle(currentFrame);
 }
 
@@ -13,6 +14,20 @@ void PlayerManager::init(InputManager::Role r)
 {
 	player.init(r);
 	im.init(r);
+
+	switch (r)
+	{
+	case InputManager::PL:
+		fwd_m = im.right_m;
+		back_m = im.left_m;
+		break;
+	case InputManager::PR:
+		fwd_m = im.left_m;
+		back_m = im.right_m;
+		break;
+	default:
+		break;
+	}
 }
 
 void PlayerManager::update()
@@ -21,7 +36,6 @@ void PlayerManager::update()
 	player.update(im.getDir());
 	currentFrame.nextFrame();
 	currentFrame.setPos(player.getPos());
-	//getCombo();
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
@@ -34,13 +48,20 @@ void PlayerManager::draw(sf::RenderWindow* w)
 void PlayerManager::keyPressed()
 {
 	im.getInput();
+	getCombo();
 }
 
-int PlayerManager::getCombo()
+bool PlayerManager::getCombo()
 {
-	if (im.hasCommand(im.up_m | im.left_m))
+	if (im.hasCommand(down_m, 2) && im.hasCommand(back_m, 1) && im.hasCommand(back_m | down_m, 0))
 	{
-		std::cout << "TL" << std::endl;
+		std::cout << "Backstep" << std::endl;
+		return true;
 	}
-	return 1;
+	if (im.hasCommand(fwd_m, 3) && im.hasCommand(fwd_m, 2) && im.hasCommand(fwd_m, 1) && im.hasCommand(fwd_m | b1_m, 0))
+	{
+		std::cout << "Triple" << std::endl;
+		return true;
+	}
+	return false;
 }
