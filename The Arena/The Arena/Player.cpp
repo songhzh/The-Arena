@@ -22,6 +22,7 @@ void Player::init(int r)
 void Player::update(float df, int dir)
 {
 	walk(dir);
+
 	vel += acc * df;
 	pos += vel * df;
 	
@@ -34,7 +35,7 @@ void Player::updateAnimation(float df)
 
 void Player::walk(int dir)
 {
-	pos.x += walkSpd * dir;
+	vel.x = walkSpd * dir;
 }
 
 sf::Vector2f Player::getPos()

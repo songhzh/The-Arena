@@ -2,17 +2,22 @@
 
 AnimationContainer::AnimationContainer()
 {
+	currentFrame = 0;
 }
 
 AnimationContainer::~AnimationContainer()
 {
 }
 
-void AnimationContainer::init(sf::Texture texture1, int duration)
+void AnimationContainer::init(std::string loc, int duration, int vtn)
 {
-	texture = texture1;
-	sprite = sf::Sprite(texture);
+	texture.loadFromFile(loc);
+	sprite.setTexture(texture);
 	textureNum = duration;
+
+	verticalTextureNum = vtn;
+	textureWidth = texture.getSize().x / textureNum;
+	textureHeight = texture.getSize().y / verticalTextureNum;
 }
 
 void AnimationContainer::setCurrentAnimation(int choice)
@@ -20,15 +25,20 @@ void AnimationContainer::setCurrentAnimation(int choice)
 	currentAnimation = choice;
 }
 
-void AnimationContainer::getFrame()
+void AnimationContainer::nextFrame(float df)
 {
-	int textureInterval = texture.getSize().x / textureNum;
-	int verticalTextureInterval = texture.getSize().y / verticalTextureNum;
+	currentFrame += df;
 
-	for (int i = 0; i < textureNum; i++) {
-		sf::IntRect rectangle(i * textureInterval, currentAnimation * verticalTextureInterval, textureInterval, verticalTextureInterval);
-		sprite.setTextureRect(rectangle);
+	if (currentFrame > textureNum - 1)
+	{
+		currentFrame -= textureNum - 1;
 	}
+
+	//sf::Vector2f size(textureWidth, textureHeight);
+	sf::IntRect textureRect(textureWidth * currentFrame, textureHeight * currentFrame, textureWidth, textureHeight);
+
+	//sf::RectangleShape rectangle(size);
+	sprite.setTextureRect(textureRect);
 }
 
 sf::Sprite AnimationContainer::getCurrentSprite() {

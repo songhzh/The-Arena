@@ -1,24 +1,29 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class AnimationContainer
 {
 public:
 	AnimationContainer();
 	~AnimationContainer();
-	void init(sf::Texture texture1, int duration);
-	void getFrame();
+	void init(std::string loc, int duration, int vtn);
+	void nextFrame(float df);
 	void setCurrentAnimation(int choice); // Choose animation, index starts at zero.
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
+	double currentFrame;
 
 	int currentAnimation; // Chooses which animation is needed (vertical choice)
 						  // 0 - idle, 1 - movement, 2 - etc...
 	int verticalTextureNum; // How many total animations the texture has.
 	int textureNum; // How many sprites are in the selected texture string.
+
+	int textureWidth;
+	int textureHeight;
 };
 
 //extern AnimationContainer still_1(Player* p);

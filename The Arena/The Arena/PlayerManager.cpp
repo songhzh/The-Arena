@@ -4,8 +4,8 @@ PlayerManager::PlayerManager()
 {
 	player = new Player;
 	im = new InputManager;
-	sf::Texture r;
-	currentFrame.init(r, 1);
+
+	currentFrame.init("Resources/Textures/vish_sheet.png", 2, 1);
 }
 
 PlayerManager::~PlayerManager()
@@ -22,14 +22,15 @@ void PlayerManager::update(float df)
 {
 	im->update(df);
 	player->update(df, im->getDir());
+	currentFrame.nextFrame(df);
 	//getCombo();
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
-	sf::RectangleShape rect(sf::Vector2f(160, 380));
-	rect.setPosition(player->getPos().x, player->getPos().y);
-	w->draw(rect);
+	//sf::RectangleShape rect(sf::Vector2f(160, 380));
+	//rect.setPosition(player->getPos().x, player->getPos().y);
+	w->draw(currentFrame.getCurrentSprite());
 }
 
 void PlayerManager::keyPressed()
