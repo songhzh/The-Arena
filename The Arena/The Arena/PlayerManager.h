@@ -21,8 +21,8 @@ public:
 private:
 	int getCombo();
 
-	Player* player;
-	InputManager* im;
+	Player player;
+	InputManager im;
 	AnimationContainer currentFrame;
 	std::vector<Hitbox*> hurtbox;
 	std::vector<Hitbox*> follower;

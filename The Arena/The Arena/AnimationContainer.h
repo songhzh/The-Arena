@@ -12,6 +12,7 @@ public:
 	void nextFrame();
 	void setCurrentAnimation(int choice); // Choose animation, index starts at zero.
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
+	void setPos(sf::Vector2f p);
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
@@ -21,6 +22,9 @@ private:
 						  // 0 - idle, 1 - movement, 2 - etc...
 	int verticalTextureNum; // How many total animations the texture has.
 	int textureNum; // How many sprites are in the selected texture string.
+	
+	int animationDelay;
+	const int ANIMATIONDELAY_MAX = 10;
 
 	int textureWidth;
 	int textureHeight;

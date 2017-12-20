@@ -3,6 +3,7 @@
 AnimationContainer::AnimationContainer()
 {
 	currentFrame = 0;
+	animationDelay = ANIMATIONDELAY_MAX;
 }
 
 AnimationContainer::~AnimationContainer()
@@ -27,22 +28,27 @@ void AnimationContainer::setCurrentAnimation(int choice)
 
 void AnimationContainer::nextFrame()
 {
-	/*
-	currentFrame += df;
-
-	if (currentFrame > textureNum - 1)
+	if (animationDelay == 0)
 	{
-		currentFrame -= textureNum - 1;
+		currentFrame = (currentFrame + 1) % textureNum;
+		animationDelay = ANIMATIONDELAY_MAX;
 	}
-	*/
-	currentFrame = (currentFrame + 1) % 2;
+	else
+	{
+		animationDelay--;
+	}
 
+	//std::cout << currentFrame << std::endl;
 	sf::IntRect textureRect(textureWidth * currentFrame, 0, textureWidth, textureHeight);
-
-	//sf::RectangleShape rectangle(size);
 	sprite.setTextureRect(textureRect);
 }
 
-sf::Sprite AnimationContainer::getCurrentSprite() {
+sf::Sprite AnimationContainer::getCurrentSprite()
+{
 	return sprite;
+}
+
+void AnimationContainer::setPos(sf::Vector2f p)
+{
+	sprite.setPosition(p);
 }

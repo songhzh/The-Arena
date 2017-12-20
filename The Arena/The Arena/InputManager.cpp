@@ -37,7 +37,7 @@ void InputManager::init(int r)
 
 void InputManager::update()
 {
-	std::cout << prevInput.size() << std::endl;
+	//std::cout << prevInput.size() << std::endl;
 	for (std::deque<Input>::iterator it = prevInput.begin(); it != prevInput.end(); it++)
 	{
 		it->frame--;
@@ -49,7 +49,7 @@ void InputManager::update()
 		}
 	}
 
-	cooldown > 0 ? cooldown-- : cooldown = 0;
+	if (cooldown > 0) cooldown--;
 }
 
 void InputManager::getInput()
