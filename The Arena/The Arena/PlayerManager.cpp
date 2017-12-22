@@ -18,8 +18,7 @@ void PlayerManager::init(InputManager::Role r)
 {
 	comboCd = 0;
 	loadAnimations();
-	currentFrame = anim::vishnu_punch_ac;
-	//currentFrame.copy(anim::vishnu_idle_ac);
+	currentFrame.copy(anim::vishnu_idle_ac);
 
 	player.init(r);
 	im.init(r);
@@ -43,34 +42,53 @@ void PlayerManager::update()
 {
 	im.update();
 	player.update(im.getDir());
-	currentFrame.nextFrame();
+	if (currentFrame.nextFrame())
+		currentFrame.copy(anim::vishnu_idle_ac);
+
 	currentFrame.setPos(player.getPos());
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
-	//sf::RectangleShape rect(sf::Vector2f(160, 380));
-	//rect.setPosition(player.getPos().x, player.getPos().y);
+	//w->draw(anim::vishnu_idle_ac.getCurrentSprite());
 	w->draw(currentFrame.getCurrentSprite());
 }
 
 void PlayerManager::keyPressed()
 {
 	im.getInput();
-	getCombo();
+	if (!currentFrame.canReset()) return;
+	switch (getMoveBsc())
+	{
+	case PUNCH:
+		currentFrame.copy(anim::vishnu_punch_ac);
+		break;
+	default:
+		break;
+	}
 }
 
-bool PlayerManager::getCombo()
+PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 {
-	if (im.hasCommand(down_m, 2) && im.hasCommand(back_m, 1) && im.hasCommand(back_m | down_m, 0))
+	if (im.hasCommandBsc(b1_m, 0))
+	{
+		std::cout << "Punch" << std::endl;
+		return PUNCH;
+	}
+	return NOBSC;
+}
+
+PlayerManager::MoveAdv PlayerManager::getMoveAdv()
+{
+	if (im.hasCommandAdv(down_m, 2) && im.hasCommandAdv(back_m, 1) && im.hasCommandAdv(back_m | down_m, 0))
 	{
 		std::cout << "Backstep" << std::endl;
-		return true;
+		return BACKSTEP;
 	}
-	if (im.hasCommand(fwd_m, 3) && im.hasCommand(fwd_m, 2) && im.hasCommand(fwd_m, 1) && im.hasCommand(fwd_m | b1_m, 0))
+	else if (im.hasCommandAdv(fwd_m, 3) && im.hasCommandAdv(fwd_m, 2) && im.hasCommandAdv(fwd_m, 1) && im.hasCommandAdv(fwd_m | b1_m, 0))
 	{
 		std::cout << "Triple" << std::endl;
-		return true;
+		return TRIPLE;
 	}
-	return false;
+	return NOADV;
 }

@@ -10,7 +10,9 @@ public:
 	AnimationContainer();
 	~AnimationContainer();
 	void copy(const AnimationContainer& orig);
-	void nextFrame();
+	void setLoop(bool l);
+	bool nextFrame();
+	bool canReset();
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 	void setPos(sf::Vector2f p);
 	void addFrame(const FrameContainer& fc);
@@ -20,6 +22,7 @@ private:
 	int currentFrame;
 	int frameCount;
 	int totalFrames;
+	bool loop;
 };
 
 //extern AnimationContainer still_1(Player* p);

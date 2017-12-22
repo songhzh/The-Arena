@@ -6,7 +6,7 @@
 struct FrameContainer
 {
 	FrameContainer();
-	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d);
+	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d, bool cr);
 	FrameContainer(const FrameContainer& orig);
 	~FrameContainer();
 	void addHitbox(Hitbox h);
@@ -15,5 +15,6 @@ struct FrameContainer
 	sf::Sprite frame;
 	std::vector<Hitbox*> hitbox;
 	int dispLen;
+	bool canReset;
 };
 

@@ -21,7 +21,8 @@ public:
 	void init(Role r);
 	void update();
 	void getInput();
-	bool hasCommand(int c, int idx);
+	bool hasCommandBsc(int c, int idx);
+	bool hasCommandAdv(int c, int idx);
 	int getDir();
 private:
 	struct Input { int keys; float frame; };

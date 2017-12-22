@@ -110,7 +110,15 @@ int InputManager::getCurrentInput()
 		sf::Keyboard::isKeyPressed(input[B2]) * b2_m;
 }
 
-bool InputManager::hasCommand(int c, int idx)
+bool InputManager::hasCommandBsc(int c, int idx)
+{
+	if (prevInput.size() <= idx) return false;
+
+	return prevInput[idx].keys & c;
+}
+
+
+bool InputManager::hasCommandAdv(int c, int idx)
 {
 	if (prevInput.size() <= idx) return false;
 

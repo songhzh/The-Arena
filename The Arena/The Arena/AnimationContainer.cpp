@@ -5,6 +5,8 @@ AnimationContainer::AnimationContainer()
 	currentFrame = 0;
 	frameCount = 0;
 	totalFrames = 0;
+	loop = false;
+	frames.reserve(1);
 }
 
 AnimationContainer::~AnimationContainer()
@@ -13,31 +15,35 @@ AnimationContainer::~AnimationContainer()
 
 void AnimationContainer::copy(const AnimationContainer& orig)
 {
-	currentFrame = 0;
-	sprite = orig.sprite;
-	
-	for (auto& it : orig.frames)
-	{
-		FrameContainer fc(it);
-		frames.push_back(fc);
-		std::cout << frames.back().dispLen << std::endl;
-	}
+	*this = orig;
+	sprite = frames[0].frame;
 }
 
-void AnimationContainer::nextFrame()
+void AnimationContainer::setLoop(bool l)
 {
-	std::cout << frames[currentFrame].dispLen << std::endl;
-	std::cout << frameCount << std::endl;
-	std::cout << std::endl;
+	loop = l;
+}
+
+bool AnimationContainer::nextFrame()
+{
 	if (frameCount > frames[currentFrame].dispLen)
 	{
 		frameCount = 0;
 		currentFrame = (currentFrame + 1) % frames.size();
+
+		std::cout << currentFrame << std::endl;
+		if (!loop && currentFrame == 0)
+			return true;
+
 		sprite = frames[currentFrame].frame;
 	}
-		
 	frameCount++;
-	
+	return false;
+}
+
+bool AnimationContainer::canReset()
+{
+	return frames[currentFrame].canReset;
 }
 
 sf::Sprite AnimationContainer::getCurrentSprite()
@@ -54,6 +60,5 @@ void AnimationContainer::addFrame(const FrameContainer& fc)
 {
 	totalFrames += fc.dispLen;
 	frames.push_back(fc);
-	//std::cout << frames.back().dispLen << std::endl;
 	//sprite = frames[0].frame;
 }

@@ -4,7 +4,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1600, 900), "The Arena", sf::Style::Titlebar | sf::Style::Close);
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(30);
 
 	GameStateManager gsm(&window);
 	window.setKeyRepeatEnabled(false);
@@ -40,10 +40,11 @@ int main()
 			}
 		}
 
-		window.clear();
+		window.clear(sf::Color(100, 155, 100, 255));
 		//deltaTime = clock.restart().asSeconds();
 		gsm.update();
 		window.display();
+		//sf::sleep(sf::milliseconds(100));
 	}
 
 	return 0;
