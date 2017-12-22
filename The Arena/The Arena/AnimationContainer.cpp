@@ -3,7 +3,6 @@
 AnimationContainer::AnimationContainer()
 {
 	currentFrame = 0;
-	animationDelay = ANIMATIONDELAY_MAX;
 }
 
 AnimationContainer::~AnimationContainer()
@@ -12,10 +11,14 @@ AnimationContainer::~AnimationContainer()
 
 void AnimationContainer::copy(const AnimationContainer& orig)
 {
+	currentFrame = 0;
 	sprite = orig.sprite;
-	frames = orig.frames;
-	animationDelay = orig.animationDelay;
-	currentFrame = orig.currentFrame;
+	
+	for (auto it : orig.frames)
+	{
+		FrameContainer fc(it);
+		frames.push_back(fc);
+	}
 }
 
 void AnimationContainer::nextFrame()
@@ -40,4 +43,5 @@ void AnimationContainer::addFrame(FrameContainer fc, int amt)
 	{
 		frames.push_back(fc);
 	}
+	sprite = frames[0].frame;
 }

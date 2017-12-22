@@ -17,8 +17,6 @@ public:
 private:
 	sf::Sprite sprite;
 	std::vector<FrameContainer> frames;
-	int animationDelay;
-	const int ANIMATIONDELAY_MAX = 10;
 	int currentFrame;
 };
 

@@ -3,6 +3,7 @@
 Hitbox::Hitbox()
 {
 	std::cout << "Hitbox created" << std::endl;
+	offset = { 0, 0 };
 	pos = { 600, 100 };
 	vel = { 0 ,0 };
 	acc = { 0, 0 };

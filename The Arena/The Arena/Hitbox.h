@@ -16,6 +16,7 @@ public:
 	virtual void onHit(Player* target);
 	virtual void dbTest() {}
 protected:
+	sf::Vector2f offset;
 	sf::Vector2f pos;
 	sf::Vector2f vel;
 	sf::Vector2f acc;

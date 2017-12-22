@@ -5,7 +5,9 @@
 
 struct FrameContainer
 {
+	FrameContainer();
 	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx);
+	FrameContainer(const FrameContainer& orig);
 	~FrameContainer();
 	void addHitbox(Hitbox* h);
 
