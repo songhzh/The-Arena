@@ -26,7 +26,7 @@ private:
 
 	Player player;
 	InputManager im;
-	AnimationContainer currentFrame;
+	AnimationContainer* currentFrame;
 	std::vector<Hitbox*> hurtbox;
 	std::vector<Hitbox*> follower;
 	std::vector<Hitbox*> projectile;

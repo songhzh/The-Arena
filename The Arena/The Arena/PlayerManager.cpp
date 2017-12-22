@@ -18,7 +18,7 @@ void PlayerManager::init(InputManager::Role r)
 {
 	comboCd = 0;
 	loadAnimations();
-	currentFrame.copy(anim::vishnu_idle_ac);
+	currentFrame = &anim::vishnu_idle_ac;
 
 	player.init(r);
 	im.init(r);
@@ -42,26 +42,26 @@ void PlayerManager::update()
 {
 	im.update();
 	player.update(im.getDir());
-	if (currentFrame.nextFrame())
-		currentFrame.copy(anim::vishnu_idle_ac);
+	if (currentFrame->nextFrame())
+		currentFrame = &anim::vishnu_idle_ac;
 
-	currentFrame.setPos(player.getPos());
+	currentFrame->setPos(player.getPos());
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
 	//w->draw(anim::vishnu_idle_ac.getCurrentSprite());
-	w->draw(currentFrame.getCurrentSprite());
+	w->draw(currentFrame->getCurrentSprite());
 }
 
 void PlayerManager::keyPressed()
 {
 	im.getInput();
-	if (!currentFrame.canReset()) return;
+	if (!currentFrame->canReset()) return;
 	switch (getMoveBsc())
 	{
 	case PUNCH:
-		currentFrame.copy(anim::vishnu_punch_ac);
+		currentFrame = &anim::vishnu_punch_ac;
 		break;
 	default:
 		break;
@@ -72,7 +72,7 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 {
 	if (im.hasCommandBsc(b1_m, 0))
 	{
-		std::cout << "Punch" << std::endl;
+		//std::cout << "Punch" << std::endl;
 		return PUNCH;
 	}
 	return NOBSC;

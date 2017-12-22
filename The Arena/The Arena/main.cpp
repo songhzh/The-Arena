@@ -4,7 +4,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1600, 900), "The Arena", sf::Style::Titlebar | sf::Style::Close);
-	window.setFramerateLimit(30);
+	window.setFramerateLimit(60);
 
 	GameStateManager gsm(&window);
 	window.setKeyRepeatEnabled(false);

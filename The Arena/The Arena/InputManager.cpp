@@ -96,7 +96,7 @@ void InputManager::getInput()
 		}
 	}
 
-	printInput();
+	//printInput();
 }
 
 int InputManager::getCurrentInput()

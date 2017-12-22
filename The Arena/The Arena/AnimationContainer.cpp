@@ -13,12 +13,13 @@ AnimationContainer::~AnimationContainer()
 {
 }
 
+/*
 void AnimationContainer::copy(const AnimationContainer& orig)
 {
 	*this = orig;
 	sprite = frames[0].frame;
 }
-
+*/
 void AnimationContainer::setLoop(bool l)
 {
 	loop = l;
@@ -60,5 +61,5 @@ void AnimationContainer::addFrame(const FrameContainer& fc)
 {
 	totalFrames += fc.dispLen;
 	frames.push_back(fc);
-	//sprite = frames[0].frame;
+	sprite = frames[0].frame;
 }

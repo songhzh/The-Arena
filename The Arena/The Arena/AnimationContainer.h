@@ -9,7 +9,7 @@ class AnimationContainer
 public:
 	AnimationContainer();
 	~AnimationContainer();
-	void copy(const AnimationContainer& orig);
+	//void copy(const AnimationContainer& orig);
 	void setLoop(bool l);
 	bool nextFrame();
 	bool canReset();
