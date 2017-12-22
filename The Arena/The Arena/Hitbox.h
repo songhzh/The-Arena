@@ -12,7 +12,8 @@ class Hitbox
 public:
 	Hitbox();
 	virtual ~Hitbox();
-	virtual void update();
+	virtual Hitbox* clone();
+	virtual void update(Player* owner);
 	virtual void onHit(Player* target);
 	virtual void dbTest() {}
 protected:
@@ -24,10 +25,21 @@ protected:
 	sf::RectangleShape box;
 };
 
+class Hurtbox : public Hitbox
+{
+public:
+	Hurtbox* clone();
+	void init(sf::Vector2f ofs);
+	void update(Player* owner);
+
+
+};
+
 class Projectile : public Hitbox
 {
 public:
-	void update();
+	Projectile* clone();
+	void update(Player* owner);
 	void onHit(Player* target);
 	void dbTest();
 private:

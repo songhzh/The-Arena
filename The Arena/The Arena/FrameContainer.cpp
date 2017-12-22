@@ -4,7 +4,7 @@ FrameContainer::FrameContainer()
 {
 }
 
-FrameContainer::FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx)
+FrameContainer::FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d) : dispLen(d)
 {
 	texture.loadFromFile(loc);
 	frame.setTexture(texture);
@@ -14,27 +14,35 @@ FrameContainer::FrameContainer(std::string loc, int hNum, int vNum, int hIdx, in
 	frame.setTextureRect(textureRect);
 }
 
+
 FrameContainer::FrameContainer(const FrameContainer& orig)
 {
 	texture = orig.texture;
 	frame = orig.frame;
-	for (auto it : orig.hitbox)
+	hitbox = orig.hitbox;
+	dispLen = orig.dispLen;
+	
+	for (auto& it : orig.hitbox)
 	{
-		Hitbox* hb = new Hitbox;
-		*hb = *it;
-		hitbox.push_back(hb);
+		hitbox.push_back(it->clone());
 	}
 }
 
+
 FrameContainer::~FrameContainer()
 {
+	/*
 	for (Hitbox* it : hitbox)
+		//std::cout << "deleting" << std::endl;
 		delete it;
 	hitbox.clear();
+	*/
 }
 
-void FrameContainer::addHitbox(Hitbox* h)
+void FrameContainer::addHitbox(Hitbox h)
 {
-	hitbox.push_back(h);
+	Hitbox* hb = new Hitbox;
+	*hb = h;
+	hitbox.push_back(hb);
 }
 

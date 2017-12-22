@@ -6,13 +6,14 @@
 struct FrameContainer
 {
 	FrameContainer();
-	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx);
+	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d);
 	FrameContainer(const FrameContainer& orig);
 	~FrameContainer();
-	void addHitbox(Hitbox* h);
+	void addHitbox(Hitbox h);
 
 	sf::Texture texture;
 	sf::Sprite frame;
 	std::vector<Hitbox*> hitbox;
+	int dispLen;
 };
 

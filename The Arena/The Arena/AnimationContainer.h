@@ -13,11 +13,13 @@ public:
 	void nextFrame();
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 	void setPos(sf::Vector2f p);
-	void addFrame(FrameContainer fc, int amt);
+	void addFrame(const FrameContainer& fc);
 private:
 	sf::Sprite sprite;
 	std::vector<FrameContainer> frames;
 	int currentFrame;
+	int frameCount;
+	int totalFrames;
 };
 
 //extern AnimationContainer still_1(Player* p);

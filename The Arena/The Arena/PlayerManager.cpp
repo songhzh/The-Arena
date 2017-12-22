@@ -2,9 +2,6 @@
 
 PlayerManager::PlayerManager()
 {
-	comboCd = 0;
-	loadAnimations();
-	currentFrame.copy(anim::vishnu_idle_ac);
 }
 
 PlayerManager::~PlayerManager()
@@ -14,10 +11,16 @@ PlayerManager::~PlayerManager()
 void PlayerManager::loadAnimations()
 {
 	anim::load_vishnu_idle_ac();
+	anim::load_vishnu_punch_ac();
 }
 
 void PlayerManager::init(InputManager::Role r)
 {
+	comboCd = 0;
+	loadAnimations();
+	currentFrame = anim::vishnu_punch_ac;
+	//currentFrame.copy(anim::vishnu_idle_ac);
+
 	player.init(r);
 	im.init(r);
 
