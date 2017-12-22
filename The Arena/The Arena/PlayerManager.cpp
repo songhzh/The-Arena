@@ -3,11 +3,17 @@
 PlayerManager::PlayerManager()
 {
 	comboCd = 0;
-	anim::load_vishnu_idle(currentFrame);
+	loadAnimations();
+	currentFrame.copy(anim::vishnu_idle_ac);
 }
 
 PlayerManager::~PlayerManager()
 {
+}
+
+void PlayerManager::loadAnimations()
+{
+	anim::load_vishnu_idle_ac(anim::vishnu_idle_ac);
 }
 
 void PlayerManager::init(InputManager::Role r)

@@ -10,7 +10,9 @@ public:
 	~GameStateManager();
 	void update();
 	void keyPressed(sf::Keyboard::Key k);
+	void setPause(bool s);
 private:
+	bool paused;
 	sf::RenderWindow* window;
 	PlayerManager playerList[2];
 };

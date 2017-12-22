@@ -18,6 +18,7 @@ public:
 	void keyPressed();
 private:
 	bool getCombo();
+	void loadAnimations();
 
 	Player player;
 	InputManager im;

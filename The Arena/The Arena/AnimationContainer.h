@@ -9,6 +9,7 @@ class AnimationContainer
 public:
 	AnimationContainer();
 	~AnimationContainer();
+	void copy(const AnimationContainer& orig);
 	void nextFrame();
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 	void setPos(sf::Vector2f p);

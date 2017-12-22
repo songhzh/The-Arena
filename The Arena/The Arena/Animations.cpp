@@ -1,6 +1,8 @@
 #include "Animations.h"
 
-void anim::load_vishnu_idle(AnimationContainer & ac)
+using namespace anim;
+
+void anim::load_vishnu_idle_ac(AnimationContainer& ac)
 {
 	ac.addFrame(vishnu_idle_1, 6);
 	ac.addFrame(vishnu_idle_2, 6);

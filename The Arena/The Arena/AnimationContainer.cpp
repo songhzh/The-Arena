@@ -10,6 +10,14 @@ AnimationContainer::~AnimationContainer()
 {
 }
 
+void AnimationContainer::copy(const AnimationContainer& orig)
+{
+	sprite = orig.sprite;
+	frames = orig.frames;
+	animationDelay = orig.animationDelay;
+	currentFrame = orig.currentFrame;
+}
+
 void AnimationContainer::nextFrame()
 {
 	currentFrame = (currentFrame + 1) % frames.size();

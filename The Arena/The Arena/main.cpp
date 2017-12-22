@@ -30,8 +30,10 @@ int main()
 				//std::cout << evt.key.code << std::endl;
 				break;
 			case sf::Event::LostFocus:
+				gsm.setPause(true);
 				break;
 			case sf::Event::GainedFocus:
+				gsm.setPause(false);
 				break;
 			default:
 				break;
