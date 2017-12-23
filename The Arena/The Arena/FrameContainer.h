@@ -17,6 +17,6 @@ struct FrameContainer
 	sf::Sprite frame;
 	std::vector<Hitbox*> hitbox;
 	int dispLen;
-	bool canReset;
+	bool canReset; // if animation-cancelling allowed
 };
 

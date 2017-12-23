@@ -38,6 +38,14 @@ public:
 
 };
 
+class Vishnu_kick : public Hitbox
+{
+public:
+	Vishnu_kick(sf::RectangleShape b, sf::Vector2f sf);
+	void onHit(Player* target) {}
+	void draw(sf::RenderWindow* w);
+};
+
 class Projectile : public Hitbox
 {
 public:

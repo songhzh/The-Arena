@@ -63,6 +63,18 @@ void Vishnu_punch::draw(sf::RenderWindow* w)
 	w->draw(box);
 }
 
+Vishnu_kick::Vishnu_kick(sf::RectangleShape b, sf::Vector2f ofs)
+{
+	box = b;
+	offset = ofs;
+}
+
+void Vishnu_kick::draw(sf::RenderWindow* w)
+{
+	box.setFillColor(sf::Color(255, 0, 255, 100));
+	w->draw(box);
+}
+
 Projectile* Projectile::clone()
 {
 	return new Projectile(*this);

@@ -12,6 +12,7 @@ void PlayerManager::loadAnimations()
 {
 	anim::load_vishnu_idle_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
+	anim::load_vishnu_kick_ac(&player);
 }
 
 void PlayerManager::init(InputManager::Role r)
@@ -63,6 +64,8 @@ void PlayerManager::keyPressed()
 	case PUNCH:
 		currentFrame = anim::vishnu_punch_ac.resetPtr();
 		break;
+	case KICK:
+		currentFrame = anim::vishnu_kick_ac.resetPtr();
 	default:
 		break;
 	}
@@ -71,10 +74,9 @@ void PlayerManager::keyPressed()
 PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 {
 	if (im.hasCommandBsc(b1_m, 0))
-	{
-		//std::cout << "Punch" << std::endl;
 		return PUNCH;
-	}
+	else if (im.hasCommandBsc(b2_m, 0))
+		return KICK;
 	return NOBSC;
 }
 
