@@ -4,6 +4,10 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1600, 900), "The Arena", sf::Style::Titlebar | sf::Style::Close);
+	sf::Texture logo_t;
+	logo_t.loadFromFile("Resources/Textures/title_logo.png");
+	sf::Sprite logo_s(logo_t);
+	logo_s.setPosition(sf::Vector2f(1410, 10));
 	window.setFramerateLimit(60);
 	window.setKeyRepeatEnabled(false);
 
@@ -38,6 +42,7 @@ int main()
 		}
 
 		window.clear(sf::Color(100, 155, 100, 255));
+		window.draw(logo_s);
 		gsm.update();
 		window.display();
 		//sf::sleep(sf::milliseconds(100));

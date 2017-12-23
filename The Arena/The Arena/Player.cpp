@@ -13,7 +13,7 @@ void Player::init(sf::Vector2f p)
 	pos = p;
 	ground = pos.y;
 	vel = { 0, 0 };
-	acc = { 0, 7 };
+	acc = { 0, 5 };
 }
 
 void Player::update(int dir, float sm)
@@ -34,7 +34,8 @@ void Player::updateAnimation()
 
 void Player::walk(float dir, float sm)
 {
-	vel.x = walkSpd * dir * sm;
+	vel.x = walkSpd * dir;
+	vel.x *= pos.y == ground ? sm : (sm + 1) / 2;
 }
 
 void Player::jump()

@@ -21,7 +21,7 @@ private:
 	
 	void updateAnimation();
 	float walkSpd = 20;
-	float jumpSpd = -70;
+	float jumpSpd = -50;
 	float ground;
 };
 
