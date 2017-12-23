@@ -19,8 +19,8 @@ namespace anim
 	extern FrameContainer vishnu_punch_6;
 	extern AnimationContainer vishnu_punch_ac;
 
-	void load_vishnu_idle_ac();
-	void load_vishnu_punch_ac();
+	void load_vishnu_idle_ac(Player* p);
+	void load_vishnu_punch_ac(Player* p);
 }
 
 

@@ -10,15 +10,15 @@ PlayerManager::~PlayerManager()
 
 void PlayerManager::loadAnimations()
 {
-	anim::load_vishnu_idle_ac();
-	anim::load_vishnu_punch_ac();
+	anim::load_vishnu_idle_ac(&player);
+	anim::load_vishnu_punch_ac(&player);
 }
 
 void PlayerManager::init(InputManager::Role r)
 {
 	comboCd = 0;
 	loadAnimations();
-	currentFrame = &anim::vishnu_idle_ac;
+	currentFrame = anim::vishnu_idle_ac.resetPtr();
 
 	player.init(r);
 	im.init(r);
@@ -41,17 +41,17 @@ void PlayerManager::init(InputManager::Role r)
 void PlayerManager::update()
 {
 	im.update();
-	player.update(im.getDir());
+	player.update(im.getDir(), currentFrame->getSpdMult());
 	if (currentFrame->nextFrame())
-		currentFrame = &anim::vishnu_idle_ac;
+		currentFrame = anim::vishnu_idle_ac.resetPtr();
 
 	currentFrame->setPos(player.getPos());
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
-	//w->draw(anim::vishnu_idle_ac.getCurrentSprite());
 	w->draw(currentFrame->getCurrentSprite());
+	currentFrame->drawHitbox(w);
 }
 
 void PlayerManager::keyPressed()
@@ -61,7 +61,7 @@ void PlayerManager::keyPressed()
 	switch (getMoveBsc())
 	{
 	case PUNCH:
-		currentFrame = &anim::vishnu_punch_ac;
+		currentFrame = anim::vishnu_punch_ac.resetPtr();
 		break;
 	default:
 		break;

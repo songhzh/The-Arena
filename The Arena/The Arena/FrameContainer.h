@@ -9,7 +9,9 @@ struct FrameContainer
 	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d, bool cr);
 	FrameContainer(const FrameContainer& orig);
 	~FrameContainer();
-	void addHitbox(Hitbox h);
+	void addHitbox(Hitbox* h);
+	void updateHitbox(Player* owner);
+	void drawHitbox(sf::RenderWindow* w);
 
 	sf::Texture texture;
 	sf::Sprite frame;

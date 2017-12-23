@@ -19,9 +19,9 @@ void Player::init(int r)
 	*/
 }
 
-void Player::update(int dir)
+void Player::update(int dir, float sm)
 {
-	walk(dir);
+	walk((float) dir, sm);
 
 	vel += acc;
 	pos += vel;
@@ -33,9 +33,9 @@ void Player::updateAnimation()
 {
 }
 
-void Player::walk(int dir)
+void Player::walk(float dir, float sm)
 {
-	vel.x = walkSpd * dir;
+	vel.x = walkSpd * dir * sm;
 }
 
 sf::Vector2f Player::getPos()

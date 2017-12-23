@@ -40,10 +40,25 @@ FrameContainer::~FrameContainer()
 	*/
 }
 
-void FrameContainer::addHitbox(Hitbox h)
+void FrameContainer::addHitbox(Hitbox* h)
 {
-	Hitbox* hb = new Hitbox;
-	*hb = h;
-	hitbox.push_back(hb);
+	hitbox.push_back(h);
 }
+
+void FrameContainer::updateHitbox(Player* owner)
+{
+	for (auto it : hitbox)
+		it->update(owner);
+}
+
+void FrameContainer::drawHitbox(sf::RenderWindow* w)
+{
+	for (auto it : hitbox)
+	{
+		it->draw(w);
+	}
+		
+}
+
+
 

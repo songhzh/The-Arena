@@ -5,33 +5,36 @@
 
 #include "Player.h"
 
-class Player;
-
 class Hitbox
 {
 public:
 	Hitbox();
 	virtual ~Hitbox();
 	virtual Hitbox* clone();
+	virtual void draw(sf::RenderWindow* w);
 	virtual void update(Player* owner);
 	virtual void onHit(Player* target);
+	virtual void setPos(sf::Vector2f pos);
 	virtual void dbTest() {}
 protected:
 	sf::Vector2f offset;
-	sf::Vector2f pos;
-	sf::Vector2f vel;
-	sf::Vector2f acc;
-
 	sf::RectangleShape box;
 };
 
 class Hurtbox : public Hitbox
 {
 public:
-	Hurtbox* clone();
-	void init(sf::Vector2f ofs);
-	void update(Player* owner);
+	Hurtbox(sf::RectangleShape b, sf::Vector2f ofs);
+	//Hurtbox* clone();
+	//void update(Player* owner);
+};
 
+class Vishnu_punch : public Hitbox
+{
+public:
+	Vishnu_punch(sf::RectangleShape b, sf::Vector2f sf);
+	void onHit(Player* target) {}
+	void draw(sf::RenderWindow* w);
 
 };
 

@@ -2,11 +2,6 @@
 
 Hitbox::Hitbox()
 {
-	//std::cout << "Hitbox created" << std::endl;
-	offset = { 0, 0 };
-	pos = { 0, 0 };
-	vel = { 0 ,0 };
-	acc = { 0, 0 };
 }
 
 Hitbox::~Hitbox()
@@ -18,28 +13,54 @@ Hitbox* Hitbox::clone()
 	return new Hitbox(*this);
 }
 
+void Hitbox::draw(sf::RenderWindow* w)
+{
+	box.setFillColor(sf::Color(255, 255, 255, 100));
+	w->draw(box);
+}
+
 void Hitbox::update(Player* owner)
 {
-	std::cout << "Hitbox update" << std::endl;
+	box.setPosition(owner->getPos() + offset);
 }
 
 void Hitbox::onHit(Player* target)
 {
 }
 
+void Hitbox::setPos(sf::Vector2f pos)
+{
+	box.setPosition(pos);
+}
+
+Hurtbox::Hurtbox(sf::RectangleShape b, sf::Vector2f ofs)
+{
+	box = b;
+	offset = ofs;
+}
+/*
 Hurtbox* Hurtbox::clone()
 {
 	return new Hurtbox(*this);
 }
 
-void Hurtbox::init(sf::Vector2f ofs)
+void Hurtbox::update(Player* owner)
 {
+	//std::cout << "hurtbox" << std::endl;
+	box.setPosition(owner->getPos() + offset);
+}
+*/
+
+Vishnu_punch::Vishnu_punch(sf::RectangleShape b, sf::Vector2f ofs)
+{
+	box = b;
 	offset = ofs;
 }
 
-void Hurtbox::update(Player* owner)
+void Vishnu_punch::draw(sf::RenderWindow* w)
 {
-	pos = owner->getPos() + offset;
+	box.setFillColor(sf::Color(255, 0, 0, 100));
+	w->draw(box);
 }
 
 Projectile* Projectile::clone()
@@ -49,7 +70,7 @@ Projectile* Projectile::clone()
 
 void Projectile::update(Player* owner)
 {
-	std::cout << "Projectile update" << std::endl;
+	//std::cout << "Projectile update" << std::endl;
 }
 
 void Projectile::onHit(Player* target)
@@ -58,10 +79,10 @@ void Projectile::onHit(Player* target)
 
 void Projectile::dbTest()
 {
-	std::cout << pos.x << std::endl;
+	//std::cout << pos.x << std::endl;
 }
 
 void Projectile::inc()
 {
-	pos.x++;
+	//pos.x++;
 }
