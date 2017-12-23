@@ -8,8 +8,9 @@ class Player
 public:
 	Player();
 	~Player();
-	void init(int r);
+	void init(sf::Vector2f p);
 	void update(int dir, float sm);
+	void jump();
 	sf::Vector2f getPos();
 private:
 	sf::Vector2f pos;
@@ -17,8 +18,10 @@ private:
 	sf::Vector2f acc;
 
 	void walk(float dir, float sm);
+	
 	void updateAnimation();
-
 	float walkSpd = 20;
+	float jumpSpd = -70;
+	float ground;
 };
 

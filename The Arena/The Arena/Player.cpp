@@ -2,21 +2,18 @@
 
 Player::Player()
 {
-	pos = { 100, 170 };
-	vel = { 0, 0 };
-	acc = { 0, 0 };
 }
 
 Player::~Player()
 {
 }
 
-void Player::init(int r)
+void Player::init(sf::Vector2f p)
 {	
-	/*
-	Projectile* proj = new Projectile(this);
-	projectile.push_back(proj);
-	*/
+	pos = p;
+	ground = pos.y;
+	vel = { 0, 0 };
+	acc = { 0, 7 };
 }
 
 void Player::update(int dir, float sm)
@@ -25,7 +22,9 @@ void Player::update(int dir, float sm)
 
 	vel += acc;
 	pos += vel;
-	
+	if (pos.y > ground)
+		pos.y = ground;
+
 	updateAnimation();
 }
 
@@ -36,6 +35,12 @@ void Player::updateAnimation()
 void Player::walk(float dir, float sm)
 {
 	vel.x = walkSpd * dir * sm;
+}
+
+void Player::jump()
+{
+	if (pos.y == ground)
+		vel.y = jumpSpd;
 }
 
 sf::Vector2f Player::getPos()

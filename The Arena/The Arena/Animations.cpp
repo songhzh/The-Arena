@@ -21,15 +21,15 @@ namespace anim
 	
 	//FrameContainer vishnu_kick_0("Resources/Textures/vishnu_kick.png", 12, 1, 0, 0, 6, false);
 	//FrameContainer vishnu_kick_1("Resources/Textures/vishnu_kick.png", 12, 1, 1, 0, 5, false);
-	FrameContainer vishnu_kick_2("Resources/Textures/vishnu_kick.png", 12, 1, 2, 0, 6, false);
+	FrameContainer vishnu_kick_2("Resources/Textures/vishnu_kick.png", 12, 1, 2, 0, 4, false);
 	//FrameContainer vishnu_kick_3("Resources/Textures/vishnu_kick.png", 12, 1, 3, 0, 6, false);
-	FrameContainer vishnu_kick_4("Resources/Textures/vishnu_kick.png", 12, 1, 4, 0, 4, false);
+	FrameContainer vishnu_kick_4("Resources/Textures/vishnu_kick.png", 12, 1, 4, 0, 3, false);
 	//FrameContainer vishnu_kick_5("Resources/Textures/vishnu_kick.png", 12, 1, 5, 0, 6, false);
-	FrameContainer vishnu_kick_6("Resources/Textures/vishnu_kick.png", 12, 1, 6, 0, 7, false);
-	FrameContainer vishnu_kick_7("Resources/Textures/vishnu_kick.png", 12, 1, 7, 0, 6, false);
+	FrameContainer vishnu_kick_6("Resources/Textures/vishnu_kick.png", 12, 1, 6, 0, 6, false);
+	FrameContainer vishnu_kick_7("Resources/Textures/vishnu_kick.png", 12, 1, 7, 0, 5, true);
 	//FrameContainer vishnu_kick_8("Resources/Textures/vishnu_kick.png", 12, 1, 8, 0, 6, false);
 	//FrameContainer vishnu_kick_9("Resources/Textures/vishnu_kick.png", 12, 1, 9, 0, 6, false);
-	FrameContainer vishnu_kick_10("Resources/Textures/vishnu_kick.png", 12, 1, 10, 0, 6, true);
+	FrameContainer vishnu_kick_10("Resources/Textures/vishnu_kick.png", 12, 1, 10, 0, 8, true);
 	//FrameContainer vishnu_kick_11("Resources/Textures/vishnu_kick.png", 12, 1, 11, 0, 4, false);
 	AnimationContainer vishnu_kick_ac;
 

@@ -21,7 +21,7 @@ void PlayerManager::init(InputManager::Role r)
 	loadAnimations();
 	currentFrame = anim::vishnu_idle_ac.resetPtr();
 
-	player.init(r);
+	player.init(sf::Vector2f(100, 170));
 	im.init(r);
 
 	switch (r)
@@ -66,6 +66,10 @@ void PlayerManager::keyPressed()
 		break;
 	case KICK:
 		currentFrame = anim::vishnu_kick_ac.resetPtr();
+		break;
+	case JUMP:
+		player.jump();
+		break;
 	default:
 		break;
 	}
@@ -77,6 +81,8 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 		return PUNCH;
 	else if (im.hasCommandBsc(b2_m, 0))
 		return KICK;
+	else if (im.hasCommandBsc(up_m, 0))
+		return JUMP;
 	return NOBSC;
 }
 
