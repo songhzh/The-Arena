@@ -2,8 +2,12 @@
 
 namespace anim
 {
-	FrameContainer vishnu_projectile_0("Resources/Textures/vishnu_projectile.png", 1, 1, 0, 0, 1, true);
+	FrameContainer vishnu_projectile_0("Resources/Textures/vishnu_dagger.png", 1, 1, 0, 0, 1, true);
 	AnimationContainer vishnu_projectile_ac;
+
+	FrameContainer vishnu_gate_0("Resources/Textures/vishnu_gate.png", 2, 1, 0, 0, 10, true);
+	FrameContainer vishnu_gate_1("Resources/Textures/vishnu_gate.png", 2, 1, 1, 0, 10, true);
+	AnimationContainer vishnu_gate_ac;
 
 	FrameContainer vishnu_idle_0("Resources/Textures/vishnu_idle.png", 4, 1, 0, 0, 6, true);
 	FrameContainer vishnu_idle_1("Resources/Textures/vishnu_idle.png", 4, 1, 1, 0, 6, true);
@@ -46,9 +50,23 @@ namespace anim
 	void load_vishnu_projectile_ac(Player* p)
 	{
 		vishnu_projectile_ac.setOwner(p);
-		vishnu_projectile_ac.setOffset(sf::Vector2f(300, 200));
+		vishnu_projectile_ac.setOffset(sf::Vector2f(-180, 170));
 		vishnu_projectile_ac.setHitboxType(AnimationContainer::VISHNU_PROJECTILE);
 		vishnu_projectile_ac.addFrame(&vishnu_projectile_0);
+	}
+
+	void load_vishnu_gate_ac(Player* p)
+	{
+		vishnu_gate_ac.setOwner(p);
+		vishnu_gate_ac.setLoop(false);
+		vishnu_gate_ac.setOffset(sf::Vector2f(-300, -50));
+		vishnu_gate_ac.setHitboxType(AnimationContainer::VISHNU_GATE);
+		vishnu_gate_ac.addFrame(&vishnu_gate_0);
+		vishnu_gate_ac.addFrame(&vishnu_gate_1);
+		vishnu_gate_ac.addFrame(&vishnu_gate_0);
+		vishnu_gate_ac.addFrame(&vishnu_gate_1);
+		vishnu_gate_ac.addFrame(&vishnu_gate_0);
+		vishnu_gate_ac.addFrame(&vishnu_gate_1);
 	}
 
 	void load_vishnu_idle_ac(Player* p)

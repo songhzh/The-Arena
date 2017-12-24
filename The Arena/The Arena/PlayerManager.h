@@ -28,7 +28,8 @@ private:
 	Player player;
 	InputManager im;
 	AnimationContainer* currentAnim;
-	std::vector<AnimationContainer*> projectile;
+	std::vector<AnimationContainer*> layer_bck;
+	std::vector<AnimationContainer*> layer_fnt;
 	int comboCd;
 
 	const int up_m = im.up_m;

@@ -68,6 +68,8 @@ void AnimationContainer::updatePos()
 	case VISHNU_PROJECTILE:
 		pos.x += 10;
 		break;
+	case VISHNU_GATE:
+		break;
 	default:
 		break;
 	}

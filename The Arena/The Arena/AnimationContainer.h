@@ -7,7 +7,7 @@
 class AnimationContainer
 {
 public:
-	enum HitboxType { NONE, FOLLOWER, VISHNU_PROJECTILE };
+	enum HitboxType { NONE, FOLLOWER, VISHNU_PROJECTILE, VISHNU_GATE };
 
 	AnimationContainer();
 	~AnimationContainer();

@@ -11,6 +11,7 @@ PlayerManager::~PlayerManager()
 void PlayerManager::loadAnimations()
 {
 	anim::load_vishnu_projectile_ac(&player);
+	anim::load_vishnu_gate_ac(&player);
 	anim::load_vishnu_idle_ac(&player);
 	anim::load_vishnu_walk_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
@@ -41,6 +42,16 @@ void PlayerManager::init(InputManager::Role r)
 	}
 }
 
+bool rmFromLayer(AnimationContainer* acp)
+{
+	if (acp->nextFrame())
+		return true;
+	else {
+		acp->updatePos();
+		return false;
+	}
+}
+
 void PlayerManager::update()
 {
 	moveEffect();
@@ -51,11 +62,8 @@ void PlayerManager::update()
 	else if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
 		currentAnim = anim::vishnu_idle_ac.resetPtr();
 	currentAnim->updatePos();
-	for (auto it : projectile)
-	{
-		it->nextFrame();
-		it->updatePos();
-	}
+	layer_bck.erase(std::remove_if(layer_bck.begin(), layer_bck.end(), rmFromLayer), layer_bck.end());
+	layer_fnt.erase(std::remove_if(layer_fnt.begin(), layer_fnt.end(), rmFromLayer), layer_fnt.end());
 }
 
 void PlayerManager::moveEffect()
@@ -65,7 +73,8 @@ void PlayerManager::moveEffect()
 		switch (currentAnim->getCurrentFrame())
 		{
 		case 0:
-			projectile.push_back(anim::vishnu_projectile_ac.clone());
+			layer_bck.push_back(anim::vishnu_gate_ac.clone());
+			layer_fnt.push_back(anim::vishnu_projectile_ac.clone());
 			break;
 		default:
 			break;
@@ -75,9 +84,16 @@ void PlayerManager::moveEffect()
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
+	for (auto it : layer_bck)
+	{
+		w->draw(it->getCurrentSprite());
+		it->drawHitbox(w);
+	}
+
 	w->draw(currentAnim->getCurrentSprite());
 	currentAnim->drawHitbox(w);
-	for (auto it : projectile)
+
+	for (auto it : layer_fnt)
 	{
 		w->draw(it->getCurrentSprite());
 		it->drawHitbox(w);
