@@ -7,7 +7,13 @@ namespace anim
 	FrameContainer vishnu_idle_2("Resources/Textures/vishnu_idle.png", 4, 1, 2, 0, 6, true);
 	FrameContainer vishnu_idle_3("Resources/Textures/vishnu_idle.png", 4, 1, 3, 0, 6, true);
 	AnimationContainer vishnu_idle_ac;
-	
+
+	FrameContainer vishnu_walk_0("Resources/Textures/vishnu_walk.png", 4, 1, 0, 0, 6, true);
+	FrameContainer vishnu_walk_1("Resources/Textures/vishnu_walk.png", 4, 1, 1, 0, 6, true);
+	FrameContainer vishnu_walk_2("Resources/Textures/vishnu_walk.png", 4, 1, 2, 0, 6, true);
+	FrameContainer vishnu_walk_3("Resources/Textures/vishnu_walk.png", 4, 1, 3, 0, 6, true);
+	AnimationContainer vishnu_walk_ac;
+
 	
 	//FrameContainer vishnu_punch_0("Resources/Textures/vishnu_punch.png", 7, 1, 0, 0, 5, false);
 	FrameContainer vishnu_punch_1("Resources/Textures/vishnu_punch.png", 7, 1, 1, 0, 5, false);
@@ -61,6 +67,17 @@ namespace anim
 		vishnu_idle_3.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(150, 100)), sf::Vector2f(90, 270)));
 		vishnu_idle_3.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(170, 320)), sf::Vector2f(80, 370)));
 		vishnu_idle_ac.addFrame(&vishnu_idle_3);
+	}
+
+	void load_vishnu_walk_ac(Player* p)
+	{
+		vishnu_walk_ac.setOwner(p);
+		vishnu_walk_ac.setLoop(true);
+		vishnu_walk_ac.setSpdMult(1.0f);
+		vishnu_walk_ac.addFrame(&vishnu_walk_0);
+		vishnu_walk_ac.addFrame(&vishnu_walk_1);
+		vishnu_walk_ac.addFrame(&vishnu_walk_2);
+		vishnu_walk_ac.addFrame(&vishnu_walk_3);
 	}
 
 	void load_vishnu_punch_ac(Player* p)

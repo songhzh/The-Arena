@@ -21,8 +21,8 @@ public:
 	void init(Role r);
 	void update();
 	void getInput();
-	bool hasCommandBsc(int c, int idx);
-	bool hasCommandAdv(int c, int idx);
+	bool hasCommandBsc(int c, int idx); // bits in c act as OR
+	bool hasCommandAdv(int c, int idx); // bits in c act as AND
 	int getDir();
 private:
 	struct Input { int keys; float frame; };

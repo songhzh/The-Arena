@@ -11,6 +11,7 @@ PlayerManager::~PlayerManager()
 void PlayerManager::loadAnimations()
 {
 	anim::load_vishnu_idle_ac(&player);
+	anim::load_vishnu_walk_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
 	anim::load_vishnu_kick_ac(&player);
 }
@@ -43,7 +44,9 @@ void PlayerManager::update()
 {
 	im.update();
 	player.update(im.getDir(), currentFrame->getSpdMult());
-	if (currentFrame->nextFrame())
+	if (currentFrame->nextFrame() || im.getDir() && currentFrame == &anim::vishnu_idle_ac)
+		currentFrame = anim::vishnu_walk_ac.resetPtr();
+	if (currentFrame == &anim::vishnu_walk_ac && !im.getDir())
 		currentFrame = anim::vishnu_idle_ac.resetPtr();
 
 	currentFrame->setPos(player.getPos());
@@ -61,6 +64,10 @@ void PlayerManager::keyPressed()
 	if (!currentFrame->canReset()) return;
 	switch (getMoveBsc())
 	{
+	case WALK:
+		if (im.getDir())
+			currentFrame = anim::vishnu_walk_ac.resetPtr();
+		break;
 	case PUNCH:
 		currentFrame = anim::vishnu_punch_ac.resetPtr();
 		break;
@@ -83,20 +90,16 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 		return KICK;
 	else if (im.hasCommandBsc(up_m, 0))
 		return JUMP;
+	else if (im.hasCommandBsc(fwd_m | back_m, 0))
+		return WALK;
 	return NOBSC;
 }
 
 PlayerManager::MoveAdv PlayerManager::getMoveAdv()
 {
 	if (im.hasCommandAdv(down_m, 2) && im.hasCommandAdv(back_m, 1) && im.hasCommandAdv(back_m | down_m, 0))
-	{
-		std::cout << "Backstep" << std::endl;
 		return BACKSTEP;
-	}
 	else if (im.hasCommandAdv(fwd_m, 3) && im.hasCommandAdv(fwd_m, 2) && im.hasCommandAdv(fwd_m, 1) && im.hasCommandAdv(fwd_m | b1_m, 0))
-	{
-		std::cout << "Triple" << std::endl;
 		return TRIPLE;
-	}
 	return NOADV;
 }
