@@ -9,7 +9,7 @@
 
 class PlayerManager
 {
-	enum MoveBsc { NOBSC, PUNCH, KICK, WALK, JUMP };
+	enum MoveBsc { NOBSC, PUNCH, KICK, JUMP };
 	enum MoveAdv { NOADV, ULTIMATE, BACKSTEP, TRIPLE };
 
 public:

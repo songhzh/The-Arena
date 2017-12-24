@@ -60,19 +60,17 @@ void PlayerManager::draw(sf::RenderWindow* w)
 
 void PlayerManager::keyPressed()
 {
-	im.getInput();
 	if (!currentFrame->canReset()) return;
+	im.getInput();
 	switch (getMoveBsc())
 	{
-	case WALK:
-		if (im.getDir())
-			currentFrame = anim::vishnu_walk_ac.resetPtr();
-		break;
 	case PUNCH:
-		currentFrame = anim::vishnu_punch_ac.resetPtr();
+		if (currentFrame != &anim::vishnu_punch_ac)
+			currentFrame = anim::vishnu_punch_ac.resetPtr();
 		break;
 	case KICK:
-		currentFrame = anim::vishnu_kick_ac.resetPtr();
+		if (currentFrame != &anim::vishnu_kick_ac)
+			currentFrame = anim::vishnu_kick_ac.resetPtr();
 		break;
 	case JUMP:
 		player.jump();
@@ -90,8 +88,6 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 		return KICK;
 	else if (im.hasCommandBsc(up_m, 0))
 		return JUMP;
-	else if (im.hasCommandBsc(fwd_m | back_m, 0))
-		return WALK;
 	return NOBSC;
 }
 
