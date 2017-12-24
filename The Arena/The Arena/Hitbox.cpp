@@ -19,18 +19,13 @@ void Hitbox::draw(sf::RenderWindow* w)
 	w->draw(box);
 }
 
-void Hitbox::update(Player* owner)
+void Hitbox::updatePos(sf::Vector2f pos)
 {
-	box.setPosition(owner->getPos() + offset);
+	box.setPosition(pos + offset);
 }
 
 void Hitbox::onHit(Player* target)
 {
-}
-
-void Hitbox::setPos(sf::Vector2f pos)
-{
-	box.setPosition(pos);
 }
 
 Hurtbox::Hurtbox(sf::RectangleShape b, sf::Vector2f ofs)
@@ -75,26 +70,23 @@ void Vishnu_kick::draw(sf::RenderWindow* w)
 	w->draw(box);
 }
 
-Projectile* Projectile::clone()
+Vishnu_projectile::Vishnu_projectile(sf::RectangleShape b, sf::Vector2f ofs)
 {
-	return new Projectile(*this);
+	box = b;
+	offset = ofs;
 }
 
-void Projectile::update(Player* owner)
+Vishnu_projectile* Vishnu_projectile::clone()
 {
-	//std::cout << "Projectile update" << std::endl;
+	return new Vishnu_projectile(*this);
 }
 
-void Projectile::onHit(Player* target)
+void Vishnu_projectile::onHit(Player* target)
 {
 }
 
-void Projectile::dbTest()
+void Vishnu_projectile::draw(sf::RenderWindow* w)
 {
-	//std::cout << pos.x << std::endl;
-}
-
-void Projectile::inc()
-{
-	//pos.x++;
+	box.setFillColor(sf::Color(0, 255, 255, 100));
+	w->draw(box);
 }

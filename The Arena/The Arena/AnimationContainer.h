@@ -7,24 +7,33 @@
 class AnimationContainer
 {
 public:
+	enum HitboxType { NONE, FOLLOWER, VISHNU_PROJECTILE };
+
 	AnimationContainer();
 	~AnimationContainer();
+	AnimationContainer* clone();
 	void setOwner(Player* p);
+	void setOffset(sf::Vector2f ofs);
+	void setLoop(bool l);
+	void setSpdMult(float sm);
+	void setHitboxType(HitboxType h);
+	void updatePos();
 	AnimationContainer* resetPtr();
 	void updateHitbox();
 	void drawHitbox(sf::RenderWindow* w);
-	void setLoop(bool l);
 	bool nextFrame();
 	bool canReset();
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
-	void setPos(sf::Vector2f pos);
 	void addFrame(FrameContainer* fc);
-	void setSpdMult(float sm);
 	float getSpdMult();
+	int getCurrentFrame();
 private:
 	Player* owner;
 	sf::Sprite sprite;
 	std::vector<FrameContainer*> frames;
+	sf::Vector2f pos;
+	sf::Vector2f offset;
+	HitboxType hbt;
 	int currentFrame;
 	int frameCount;
 	int totalFrames;

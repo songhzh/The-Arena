@@ -2,6 +2,9 @@
 
 namespace anim
 {
+	FrameContainer vishnu_projectile_0("Resources/Textures/vishnu_projectile.png", 1, 1, 0, 0, 1, true);
+	AnimationContainer vishnu_projectile_ac;
+
 	FrameContainer vishnu_idle_0("Resources/Textures/vishnu_idle.png", 4, 1, 0, 0, 6, true);
 	FrameContainer vishnu_idle_1("Resources/Textures/vishnu_idle.png", 4, 1, 1, 0, 6, true);
 	FrameContainer vishnu_idle_2("Resources/Textures/vishnu_idle.png", 4, 1, 2, 0, 6, true);
@@ -40,12 +43,17 @@ namespace anim
 	AnimationContainer vishnu_kick_ac;
 
 
+	void load_vishnu_projectile_ac(Player* p)
+	{
+		vishnu_projectile_ac.setOwner(p);
+		vishnu_projectile_ac.setOffset(sf::Vector2f(300, 200));
+		vishnu_projectile_ac.setHitboxType(AnimationContainer::VISHNU_PROJECTILE);
+		vishnu_projectile_ac.addFrame(&vishnu_projectile_0);
+	}
 
 	void load_vishnu_idle_ac(Player* p)
 	{
 		vishnu_idle_ac.setOwner(p);
-		vishnu_idle_ac.setLoop(true);
-		vishnu_idle_ac.setSpdMult(1.0f);
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(100, 120)), sf::Vector2f(150, 50)));
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(170, 100)), sf::Vector2f(90, 170)));
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(150, 100)), sf::Vector2f(90, 270)));
@@ -72,8 +80,6 @@ namespace anim
 	void load_vishnu_walk_ac(Player* p)
 	{
 		vishnu_walk_ac.setOwner(p);
-		vishnu_walk_ac.setLoop(true);
-		vishnu_walk_ac.setSpdMult(1.0f);
 		vishnu_walk_ac.addFrame(&vishnu_walk_0);
 		vishnu_walk_ac.addFrame(&vishnu_walk_1);
 		vishnu_walk_ac.addFrame(&vishnu_walk_2);

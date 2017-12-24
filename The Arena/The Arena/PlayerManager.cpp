@@ -10,6 +10,7 @@ PlayerManager::~PlayerManager()
 
 void PlayerManager::loadAnimations()
 {
+	anim::load_vishnu_projectile_ac(&player);
 	anim::load_vishnu_idle_ac(&player);
 	anim::load_vishnu_walk_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
@@ -20,7 +21,7 @@ void PlayerManager::init(InputManager::Role r)
 {
 	comboCd = 0;
 	loadAnimations();
-	currentFrame = anim::vishnu_idle_ac.resetPtr();
+	currentAnim = anim::vishnu_idle_ac.resetPtr();
 
 	player.init(sf::Vector2f(100, 170));
 	im.init(r);
@@ -42,35 +43,60 @@ void PlayerManager::init(InputManager::Role r)
 
 void PlayerManager::update()
 {
+	moveEffect();
 	im.update();
-	player.update(im.getDir(), currentFrame->getSpdMult());
-	if (currentFrame->nextFrame() || im.getDir() && currentFrame == &anim::vishnu_idle_ac)
-		currentFrame = anim::vishnu_walk_ac.resetPtr();
-	if (currentFrame == &anim::vishnu_walk_ac && !im.getDir())
-		currentFrame = anim::vishnu_idle_ac.resetPtr();
+	player.update(im.getDir(), currentAnim->getSpdMult());
+	if (currentAnim->nextFrame() || im.getDir() && currentAnim == &anim::vishnu_idle_ac)
+		currentAnim = anim::vishnu_walk_ac.resetPtr();
+	else if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
+		currentAnim = anim::vishnu_idle_ac.resetPtr();
+	currentAnim->updatePos();
+	for (auto it : projectile)
+	{
+		it->nextFrame();
+		it->updatePos();
+	}
+}
 
-	currentFrame->setPos(player.getPos());
+void PlayerManager::moveEffect()
+{
+	if (currentAnim == &anim::vishnu_punch_ac)
+	{
+		switch (currentAnim->getCurrentFrame())
+		{
+		case 0:
+			projectile.push_back(anim::vishnu_projectile_ac.clone());
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void PlayerManager::draw(sf::RenderWindow* w)
 {
-	w->draw(currentFrame->getCurrentSprite());
-	currentFrame->drawHitbox(w);
+	w->draw(currentAnim->getCurrentSprite());
+	currentAnim->drawHitbox(w);
+	for (auto it : projectile)
+	{
+		w->draw(it->getCurrentSprite());
+		it->drawHitbox(w);
+	}
 }
 
 void PlayerManager::keyPressed()
 {
-	if (!currentFrame->canReset()) return;
+	if (!currentAnim->canReset()) return;
 	im.getInput();
 	switch (getMoveBsc())
 	{
 	case PUNCH:
-		if (currentFrame != &anim::vishnu_punch_ac)
-			currentFrame = anim::vishnu_punch_ac.resetPtr();
+		if (currentAnim != &anim::vishnu_punch_ac)
+			currentAnim = anim::vishnu_punch_ac.resetPtr();
 		break;
 	case KICK:
-		if (currentFrame != &anim::vishnu_kick_ac)
-			currentFrame = anim::vishnu_kick_ac.resetPtr();
+		if (currentAnim != &anim::vishnu_kick_ac)
+			currentAnim = anim::vishnu_kick_ac.resetPtr();
 		break;
 	case JUMP:
 		player.jump();

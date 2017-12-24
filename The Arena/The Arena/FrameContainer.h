@@ -7,10 +7,10 @@ struct FrameContainer
 {
 	FrameContainer();
 	FrameContainer(std::string loc, int hNum, int vNum, int hIdx, int vIdx, int d, bool cr);
-	FrameContainer(const FrameContainer& orig);
+	FrameContainer* clone();
 	~FrameContainer();
 	void addHitbox(Hitbox* h);
-	void updateHitbox(Player* owner);
+	void updateHitbox(sf::Vector2f pos);
 	void drawHitbox(sf::RenderWindow* w);
 
 	sf::Texture texture;

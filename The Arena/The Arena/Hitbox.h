@@ -12,9 +12,8 @@ public:
 	virtual ~Hitbox();
 	virtual Hitbox* clone();
 	virtual void draw(sf::RenderWindow* w);
-	virtual void update(Player* owner);
+	virtual void updatePos(sf::Vector2f pos);
 	virtual void onHit(Player* target);
-	virtual void setPos(sf::Vector2f pos);
 	virtual void dbTest() {}
 protected:
 	sf::Vector2f offset;
@@ -32,7 +31,7 @@ public:
 class Vishnu_punch : public Hitbox
 {
 public:
-	Vishnu_punch(sf::RectangleShape b, sf::Vector2f sf);
+	Vishnu_punch(sf::RectangleShape b, sf::Vector2f ofs);
 	void onHit(Player* target) {}
 	void draw(sf::RenderWindow* w);
 
@@ -41,18 +40,16 @@ public:
 class Vishnu_kick : public Hitbox
 {
 public:
-	Vishnu_kick(sf::RectangleShape b, sf::Vector2f sf);
+	Vishnu_kick(sf::RectangleShape b, sf::Vector2f ofs);
 	void onHit(Player* target) {}
 	void draw(sf::RenderWindow* w);
 };
 
-class Projectile : public Hitbox
+class Vishnu_projectile : public Hitbox
 {
 public:
-	Projectile* clone();
-	void update(Player* owner);
+	Vishnu_projectile(sf::RectangleShape b, sf::Vector2f ofs);
+	Vishnu_projectile* clone();
 	void onHit(Player* target);
-	void dbTest();
-private:
-	void inc();
+	void draw(sf::RenderWindow* w);
 };

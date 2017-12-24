@@ -15,18 +15,16 @@ FrameContainer::FrameContainer(std::string loc, int hNum, int vNum, int hIdx, in
 }
 
 
-FrameContainer::FrameContainer(const FrameContainer& orig)
+FrameContainer* FrameContainer::clone()
 {
-	texture = orig.texture;
-	frame = orig.frame;
-	hitbox = orig.hitbox;
-	dispLen = orig.dispLen;
-	canReset = orig.canReset;
-
-	for (auto& it : orig.hitbox)
-	{
-		hitbox.push_back(it->clone());
-	}
+	FrameContainer* clone = new FrameContainer;
+	clone->texture = this->texture;
+	clone->frame = this->frame;
+	for (auto it : this->hitbox)
+		clone->hitbox.push_back(it->clone());
+	clone->dispLen = this->dispLen;
+	clone->canReset = this->canReset;
+	return clone;
 }
 
 
@@ -45,10 +43,10 @@ void FrameContainer::addHitbox(Hitbox* h)
 	hitbox.push_back(h);
 }
 
-void FrameContainer::updateHitbox(Player* owner)
+void FrameContainer::updateHitbox(sf::Vector2f pos)
 {
 	for (auto it : hitbox)
-		it->update(owner);
+		it->updatePos(pos);
 }
 
 void FrameContainer::drawHitbox(sf::RenderWindow* w)

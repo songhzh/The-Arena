@@ -23,13 +23,12 @@ private:
 	MoveBsc getMoveBsc();
 	MoveAdv getMoveAdv();
 	void loadAnimations();
+	void moveEffect();
 
 	Player player;
 	InputManager im;
-	AnimationContainer* currentFrame;
-	std::vector<Hitbox*> hurtbox;
-	std::vector<Hitbox*> follower;
-	std::vector<Hitbox*> projectile;
+	AnimationContainer* currentAnim;
+	std::vector<AnimationContainer*> projectile;
 	int comboCd;
 
 	const int up_m = im.up_m;
