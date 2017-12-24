@@ -12,13 +12,14 @@ public:
 	AnimationContainer();
 	~AnimationContainer();
 	AnimationContainer* clone();
+	AnimationContainer* resetPtr();
 	void setOwner(Player* p);
 	void setOffset(sf::Vector2f ofs);
 	void setLoop(bool l);
+	void setDirLock(int d);
 	void setSpdMult(float sm);
 	void setHitboxType(HitboxType h);
 	void updatePos();
-	AnimationContainer* resetPtr();
 	void updateHitbox();
 	void drawHitbox(sf::RenderWindow* w);
 	bool nextFrame();
@@ -26,6 +27,7 @@ public:
 	sf::Sprite getCurrentSprite(); // This is what you want to show on screen.
 	void addFrame(FrameContainer* fc);
 	float getSpdMult();
+	int getDirLock();
 	int getCurrentFrame();
 private:
 	Player* owner;
@@ -38,6 +40,7 @@ private:
 	int frameCount;
 	int totalFrames;
 	bool loop;
+	int dirLock;
 	float spdMult;
 };
 

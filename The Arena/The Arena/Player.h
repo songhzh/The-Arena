@@ -9,7 +9,8 @@ public:
 	Player();
 	~Player();
 	void init(sf::Vector2f p);
-	void update(int dir, float sm);
+	void update(int dir, float sm, int dlock);
+	bool onGround();
 	void jump();
 	sf::Vector2f getPos();
 private:

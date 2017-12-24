@@ -9,6 +9,7 @@ AnimationContainer::AnimationContainer()
 	hbt = FOLLOWER;
 	offset = sf::Vector2f(0, 0);
 	loop = true;
+	dirLock = 0;
 }
 
 AnimationContainer::~AnimationContainer()
@@ -29,8 +30,18 @@ AnimationContainer* AnimationContainer::clone()
 	clone ->frameCount = this->frameCount;
 	clone->totalFrames = this->totalFrames;
 	clone->loop = this->loop;
+	clone->dirLock = this->dirLock;
 	clone->spdMult = this->spdMult;
 	return clone;
+}
+
+AnimationContainer* AnimationContainer::resetPtr()
+{
+	frameCount = 0;
+	currentFrame = 0;
+	sprite = frames[currentFrame]->frame;
+	updateHitbox();
+	return this;
 }
 
 void AnimationContainer::setOwner(Player* p)
@@ -46,6 +57,11 @@ void AnimationContainer::setOffset(sf::Vector2f ofs)
 void AnimationContainer::setLoop(bool l)
 {
 	loop = l;
+}
+
+void AnimationContainer::setDirLock(int d)
+{
+	dirLock = d;
 }
 
 void AnimationContainer::setSpdMult(float sm)
@@ -75,14 +91,6 @@ void AnimationContainer::updatePos()
 	}
 	sprite.setPosition(pos);
 	updateHitbox();
-}
-
-AnimationContainer* AnimationContainer::resetPtr()
-{
-	currentFrame = 0;
-	sprite = frames[currentFrame]->frame;
-	updateHitbox();
-	return this;
 }
 
 void AnimationContainer::updateHitbox()
@@ -130,6 +138,11 @@ void AnimationContainer::addFrame(FrameContainer* fc)
 float AnimationContainer::getSpdMult()
 {
 	return spdMult;
+}
+
+int AnimationContainer::getDirLock()
+{
+	return dirLock;
 }
 
 int AnimationContainer::getCurrentFrame()

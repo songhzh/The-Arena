@@ -14,6 +14,7 @@ void PlayerManager::loadAnimations()
 	anim::load_vishnu_gate_ac(&player);
 	anim::load_vishnu_idle_ac(&player);
 	anim::load_vishnu_walk_ac(&player);
+	anim::load_vishnu_jump_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
 	anim::load_vishnu_kick_ac(&player);
 }
@@ -56,8 +57,8 @@ void PlayerManager::update()
 {
 	moveEffect();
 	im.update();
-	player.update(im.getDir(), currentAnim->getSpdMult());
-	if (currentAnim->nextFrame() || im.getDir() && currentAnim == &anim::vishnu_idle_ac)
+	player.update(im.getDir(), currentAnim->getSpdMult(), fwd_m == im.right_m ? currentAnim->getDirLock() : -currentAnim->getDirLock());
+	if (currentAnim->nextFrame() || im.getDir() && currentAnim == &anim::vishnu_idle_ac || player.onGround() && currentAnim == &anim::vishnu_jump_ac)
 		currentAnim = anim::vishnu_walk_ac.resetPtr();
 	else if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
 		currentAnim = anim::vishnu_idle_ac.resetPtr();
@@ -73,8 +74,8 @@ void PlayerManager::moveEffect()
 		switch (currentAnim->getCurrentFrame())
 		{
 		case 0:
-			layer_bck.push_back(anim::vishnu_gate_ac.clone());
-			layer_fnt.push_back(anim::vishnu_projectile_ac.clone());
+			//layer_bck.push_back(anim::vishnu_gate_ac.clone());
+			//layer_fnt.push_back(anim::vishnu_projectile_ac.clone());
 			break;
 		default:
 			break;
@@ -102,8 +103,9 @@ void PlayerManager::draw(sf::RenderWindow* w)
 
 void PlayerManager::keyPressed()
 {
-	if (!currentAnim->canReset()) return;
 	im.getInput();
+	if (!currentAnim->canReset() || !player.onGround()) return;
+	
 	switch (getMoveBsc())
 	{
 	case PUNCH:
@@ -116,6 +118,7 @@ void PlayerManager::keyPressed()
 		break;
 	case JUMP:
 		player.jump();
+		currentAnim = anim::vishnu_jump_ac.resetPtr();
 		break;
 	default:
 		break;
