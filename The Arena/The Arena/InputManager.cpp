@@ -121,7 +121,6 @@ bool InputManager::hasCommandBsc(int c, int idx)
 bool InputManager::hasCommandAdv(int c, int idx)
 {
 	if (prevInput.size() <= idx) return false;
-
 	return prevInput[idx].keys == c;
 }
 
@@ -129,12 +128,12 @@ int InputManager::getDir()
 {
 	bool left = sf::Keyboard::isKeyPressed(input[LEFT]);
 	bool right = sf::Keyboard::isKeyPressed(input[RIGHT]);
-	bool down = sf::Keyboard::isKeyPressed(input[DOWN]);
-
 	if (left ^ right)
-	{
 		lastDir = left ? -1 : 1;
-	}
+	return left || right ? lastDir : 0;
+}
 
-	return (left || right) && !down ? lastDir : 0;
+bool InputManager::getCrouch()
+{
+	return sf::Keyboard::isKeyPressed(input[DOWN]);
 }

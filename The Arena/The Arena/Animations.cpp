@@ -32,6 +32,10 @@ namespace anim
 	//FrameContainer vishnu_jump_8("Resources/Textures/vishnu_jump.png", 10, 1, 8, 0, 3, true);
 	//FrameContainer vishnu_jump_9("Resources/Textures/vishnu_jump.png", 10, 1, 9, 0, 3, true);
 	AnimationContainer vishnu_jump_ac;
+
+	FrameContainer vishnu_crouch_0("Resources/Textures/vishnu_crouch.png", 2, 1, 0, 0, 6, true);
+	FrameContainer vishnu_crouch_1("Resources/Textures/vishnu_crouch.png", 2, 1, 1, 0, 6, true);
+	AnimationContainer vishnu_crouch_ac;
 	
 	//FrameContainer vishnu_punch_0("Resources/Textures/vishnu_punch.png", 7, 1, 0, 0, 5, false);
 	FrameContainer vishnu_punch_1("Resources/Textures/vishnu_punch.png", 7, 1, 1, 0, 5, false);
@@ -138,6 +142,15 @@ namespace anim
 		vishnu_jump_ac.addFrame(&vishnu_jump_7);
 		//vishnu_jump_ac.addFrame(&vishnu_jump_8);
 		//vishnu_jump_ac.addFrame(&vishnu_jump_9);
+	}
+
+	void load_vishnu_crouch_ac(Player* p)
+	{
+		vishnu_crouch_ac.setOwner(p);
+		vishnu_crouch_ac.setSpdMult(0.0f);
+		vishnu_crouch_ac.setLoop(true);
+		vishnu_crouch_ac.addFrame(&vishnu_crouch_0);
+		vishnu_crouch_ac.addFrame(&vishnu_crouch_1);
 	}
 
 	void load_vishnu_punch_ac(Player* p)

@@ -9,7 +9,7 @@
 
 class PlayerManager
 {
-	enum MoveBsc { NOBSC, PUNCH, KICK, JUMP };
+	enum MoveBsc { NOBSC, PUNCH, KICK, JUMP, WALK, CROUCH };
 	enum MoveAdv { NOADV, ULTIMATE, BACKSTEP, TRIPLE };
 
 public:
@@ -20,6 +20,7 @@ public:
 	void draw(sf::RenderWindow* w);
 	void keyPressed();
 private:
+	void checkAnim();
 	MoveBsc getMoveBsc();
 	MoveAdv getMoveAdv();
 	void loadAnimations();

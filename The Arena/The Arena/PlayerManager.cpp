@@ -15,6 +15,7 @@ void PlayerManager::loadAnimations()
 	anim::load_vishnu_idle_ac(&player);
 	anim::load_vishnu_walk_ac(&player);
 	anim::load_vishnu_jump_ac(&player);
+	anim::load_vishnu_crouch_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
 	anim::load_vishnu_kick_ac(&player);
 	anim::load_vishnu_backstep_ac(&player);
@@ -59,13 +60,21 @@ void PlayerManager::update()
 	moveEffect();
 	im.update();
 	player.update(im.getDir(), currentAnim->getSpdMult(), fwd_m == im.right_m ? currentAnim->getDirLock() : -currentAnim->getDirLock());
-	if (currentAnim->nextFrame() || im.getDir() && currentAnim == &anim::vishnu_idle_ac || player.onGround() && currentAnim == &anim::vishnu_jump_ac)
-		currentAnim = anim::vishnu_walk_ac.resetPtr();
-	if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
-		currentAnim = anim::vishnu_idle_ac.resetPtr();
+	checkAnim();
 	currentAnim->updatePos();
 	layer_bck.erase(std::remove_if(layer_bck.begin(), layer_bck.end(), rmFromLayer), layer_bck.end());
 	layer_fnt.erase(std::remove_if(layer_fnt.begin(), layer_fnt.end(), rmFromLayer), layer_fnt.end());
+}
+
+void PlayerManager::checkAnim()
+{
+	if (currentAnim->nextFrame() || !im.getDir() && currentAnim == &anim::vishnu_walk_ac
+		|| player.onGround() && currentAnim == &anim::vishnu_jump_ac || !im.getCrouch() && currentAnim == &anim::vishnu_crouch_ac)
+		currentAnim = anim::vishnu_idle_ac.resetPtr();
+		
+	if (currentAnim == &anim::vishnu_idle_ac)
+		if (im.getDir() ^ im.getCrouch())
+			currentAnim = im.getDir() ? anim::vishnu_walk_ac.resetPtr() : anim::vishnu_crouch_ac.resetPtr();
 }
 
 void PlayerManager::moveEffect()
@@ -121,6 +130,14 @@ void PlayerManager::keyPressed()
 		player.jump();
 		currentAnim = anim::vishnu_jump_ac.resetPtr();
 		break;
+	case CROUCH:
+		if (currentAnim != &anim::vishnu_crouch_ac)
+			currentAnim = anim::vishnu_crouch_ac.resetPtr();
+		break;
+	case WALK:
+		if (currentAnim != &anim::vishnu_walk_ac)
+			currentAnim = anim::vishnu_walk_ac.resetPtr();
+		break;
 	default:
 		break;
 	}
@@ -143,6 +160,10 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 		return KICK;
 	else if (im.hasCommandBsc(up_m, 0))
 		return JUMP;
+	else if (im.hasCommandBsc(down_m, 0))
+		return CROUCH;
+	else if (im.hasCommandBsc(back_m | fwd_m, 0))
+		return WALK;
 	return NOBSC;
 }
 

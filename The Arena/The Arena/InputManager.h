@@ -24,6 +24,7 @@ public:
 	bool hasCommandBsc(int c, int idx); // bits in c act as OR
 	bool hasCommandAdv(int c, int idx); // bits in c act as AND
 	int getDir();
+	bool getCrouch();
 private:
 	struct Input { int keys; float frame; };
 

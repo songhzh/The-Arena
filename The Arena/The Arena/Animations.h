@@ -10,6 +10,7 @@ namespace anim
 	extern AnimationContainer vishnu_idle_ac;
 	extern AnimationContainer vishnu_walk_ac;
 	extern AnimationContainer vishnu_jump_ac;
+	extern AnimationContainer vishnu_crouch_ac;
 	extern AnimationContainer vishnu_punch_ac;
 	extern AnimationContainer vishnu_kick_ac;
 	extern AnimationContainer vishnu_backstep_ac;
@@ -19,6 +20,7 @@ namespace anim
 	void load_vishnu_idle_ac(Player* p);
 	void load_vishnu_walk_ac(Player* p);
 	void load_vishnu_jump_ac(Player* p);
+	void load_vishnu_crouch_ac(Player* p);
 	void load_vishnu_punch_ac(Player* p);
 	void load_vishnu_kick_ac(Player* p);
 	void load_vishnu_backstep_ac(Player* p);
