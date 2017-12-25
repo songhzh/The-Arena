@@ -8,7 +8,7 @@ AnimationContainer::AnimationContainer()
 	spdMult = 1.0f;
 	hbt = FOLLOWER;
 	offset = sf::Vector2f(0, 0);
-	loop = true;
+	loop = false;
 	dirLock = 0;
 }
 

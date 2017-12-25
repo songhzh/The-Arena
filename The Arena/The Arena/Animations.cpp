@@ -57,10 +57,17 @@ namespace anim
 	//FrameContainer vishnu_kick_11("Resources/Textures/vishnu_kick.png", 12, 1, 11, 0, 4, false);
 	AnimationContainer vishnu_kick_ac;
 
+	FrameContainer vishnu_backstep_0("Resources/Textures/vishnu_backstep.png", 5, 1, 0, 0, 4, false);
+	FrameContainer vishnu_backstep_1("Resources/Textures/vishnu_backstep.png", 5, 1, 1, 0, 4, false);
+	FrameContainer vishnu_backstep_2("Resources/Textures/vishnu_backstep.png", 5, 1, 2, 0, 6, true);
+	FrameContainer vishnu_backstep_3("Resources/Textures/vishnu_backstep.png", 5, 1, 3, 0, 7, false);
+	//FrameContainer vishnu_backstep_4("Resources/Textures/vishnu_backstep.png", 5, 1, 4, 0, 4, false);
+	AnimationContainer vishnu_backstep_ac;
 
 	void load_vishnu_projectile_ac(Player* p)
 	{
 		vishnu_projectile_ac.setOwner(p);
+		vishnu_projectile_ac.setLoop(true);
 		vishnu_projectile_ac.setOffset(sf::Vector2f(-180, 170));
 		vishnu_projectile_ac.setHitboxType(AnimationContainer::VISHNU_PROJECTILE);
 		vishnu_projectile_ac.addFrame(&vishnu_projectile_0);
@@ -69,7 +76,6 @@ namespace anim
 	void load_vishnu_gate_ac(Player* p)
 	{
 		vishnu_gate_ac.setOwner(p);
-		vishnu_gate_ac.setLoop(false);
 		vishnu_gate_ac.setOffset(sf::Vector2f(-300, -50));
 		vishnu_gate_ac.setHitboxType(AnimationContainer::VISHNU_GATE);
 		vishnu_gate_ac.addFrame(&vishnu_gate_0);
@@ -83,6 +89,7 @@ namespace anim
 	void load_vishnu_idle_ac(Player* p)
 	{
 		vishnu_idle_ac.setOwner(p);
+		vishnu_idle_ac.setLoop(true);
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(100, 120)), sf::Vector2f(150, 50)));
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(170, 100)), sf::Vector2f(90, 170)));
 		vishnu_idle_0.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(150, 100)), sf::Vector2f(90, 270)));
@@ -109,6 +116,7 @@ namespace anim
 	void load_vishnu_walk_ac(Player* p)
 	{
 		vishnu_walk_ac.setOwner(p);
+		vishnu_walk_ac.setLoop(true);
 		vishnu_walk_ac.addFrame(&vishnu_walk_0);
 		vishnu_walk_ac.addFrame(&vishnu_walk_1);
 		vishnu_walk_ac.addFrame(&vishnu_walk_2);
@@ -118,7 +126,6 @@ namespace anim
 	void load_vishnu_jump_ac(Player* p)
 	{
 		vishnu_jump_ac.setOwner(p);
-		vishnu_jump_ac.setLoop(false);
 		//vishnu_jump_ac.setDirLock(1);
 		vishnu_jump_ac.setSpdMult(1.3f);
 		//vishnu_jump_ac.addFrame(&vishnu_jump_0);
@@ -136,7 +143,6 @@ namespace anim
 	void load_vishnu_punch_ac(Player* p)
 	{
 		vishnu_punch_ac.setOwner(p);
-		vishnu_punch_ac.setLoop(false);
 		vishnu_punch_ac.setSpdMult(0.2f);
 		//vishnu_punch_ac.setDirLock(1);
 		//vishnu_punch_ac.addFrame(&vishnu_punch_0);
@@ -169,7 +175,6 @@ namespace anim
 	void load_vishnu_kick_ac(Player* p)
 	{
 		vishnu_kick_ac.setOwner(p);
-		vishnu_kick_ac.setLoop(false);
 		vishnu_kick_ac.setSpdMult(0.1f);
 		vishnu_kick_ac.setDirLock(-1);
 		//vishnu_kick_ac.addFrame(&vishnu_kick_0);
@@ -210,6 +215,18 @@ namespace anim
 		vishnu_kick_10.addHitbox(new Hurtbox(sf::RectangleShape(sf::Vector2f(180, 170)), sf::Vector2f(100, 530)));
 		vishnu_kick_ac.addFrame(&vishnu_kick_10);
 		//vishnu_kick_ac.addFrame(&vishnu_kick_11);
+	}
+
+	void load_vishnu_backstep_ac(Player* p)
+	{
+		vishnu_backstep_ac.setOwner(p);
+		vishnu_backstep_ac.setSpdMult(0.9f);
+		vishnu_backstep_ac.setDirLock(-1);
+		vishnu_backstep_ac.addFrame(&vishnu_backstep_0);
+		vishnu_backstep_ac.addFrame(&vishnu_backstep_1);
+		vishnu_backstep_ac.addFrame(&vishnu_backstep_2);
+		vishnu_backstep_ac.addFrame(&vishnu_backstep_3);
+		//vishnu_backstep_ac.addFrame(&vishnu_backstep_4);
 	}
 }
 

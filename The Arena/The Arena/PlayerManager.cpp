@@ -17,6 +17,7 @@ void PlayerManager::loadAnimations()
 	anim::load_vishnu_jump_ac(&player);
 	anim::load_vishnu_punch_ac(&player);
 	anim::load_vishnu_kick_ac(&player);
+	anim::load_vishnu_backstep_ac(&player);
 }
 
 void PlayerManager::init(InputManager::Role r)
@@ -60,7 +61,7 @@ void PlayerManager::update()
 	player.update(im.getDir(), currentAnim->getSpdMult(), fwd_m == im.right_m ? currentAnim->getDirLock() : -currentAnim->getDirLock());
 	if (currentAnim->nextFrame() || im.getDir() && currentAnim == &anim::vishnu_idle_ac || player.onGround() && currentAnim == &anim::vishnu_jump_ac)
 		currentAnim = anim::vishnu_walk_ac.resetPtr();
-	else if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
+	if (currentAnim == &anim::vishnu_walk_ac && !im.getDir())
 		currentAnim = anim::vishnu_idle_ac.resetPtr();
 	currentAnim->updatePos();
 	layer_bck.erase(std::remove_if(layer_bck.begin(), layer_bck.end(), rmFromLayer), layer_bck.end());
@@ -123,6 +124,15 @@ void PlayerManager::keyPressed()
 	default:
 		break;
 	}
+	switch (getMoveAdv())
+	{
+	case BACKSTEP:
+		if (currentAnim != &anim::vishnu_backstep_ac)
+			currentAnim = anim::vishnu_backstep_ac.resetPtr();
+		break;
+	default:
+		break;
+	}
 }
 
 PlayerManager::MoveBsc PlayerManager::getMoveBsc()
@@ -138,7 +148,7 @@ PlayerManager::MoveBsc PlayerManager::getMoveBsc()
 
 PlayerManager::MoveAdv PlayerManager::getMoveAdv()
 {
-	if (im.hasCommandAdv(down_m, 2) && im.hasCommandAdv(back_m, 1) && im.hasCommandAdv(back_m | down_m, 0))
+	if (im.hasCommandAdv(down_m, 1) && im.hasCommandAdv(back_m | down_m, 0))
 		return BACKSTEP;
 	else if (im.hasCommandAdv(fwd_m, 3) && im.hasCommandAdv(fwd_m, 2) && im.hasCommandAdv(fwd_m, 1) && im.hasCommandAdv(fwd_m | b1_m, 0))
 		return TRIPLE;
