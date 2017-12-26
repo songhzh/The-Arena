@@ -82,7 +82,7 @@ void AnimationContainer::updatePos()
 		pos = owner->getPos();
 		break;
 	case VISHNU_PROJECTILE:
-		pos.x += 10;
+		pos.x += 20;
 		break;
 	case VISHNU_GATE:
 		break;

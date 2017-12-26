@@ -3,6 +3,7 @@
 InputManager::InputManager()
 {
 	inputTime = 0;
+	lastDir = 0;
 }
 
 
@@ -79,8 +80,7 @@ void InputManager::getInput()
 		
 	prevInput.front() = { prevInput.front().keys | getCurrentInput(), COMBO_LIMIT };
 
-	if (prevInput.size() < 1) return;
-	if (prevInput.front().keys | left_m | right_m)
+	if (hasCommand(left_m | right_m, 0, matchall))
 	{
 		switch (lastDir)
 		{
@@ -91,7 +91,6 @@ void InputManager::getInput()
 			lastDir = prevInput.front().keys & left_m ? -1 : 1;
 			break;
 		default:
-			lastDir = -1;
 			break;
 		}
 	}
@@ -110,19 +109,40 @@ int InputManager::getCurrentInput()
 		sf::Keyboard::isKeyPressed(input[B2]) * b2_m;
 }
 
-bool InputManager::hasCommandBsc(int c, int idx)
+bool InputManager::hasCommand(int c, int idx, int cond)
 {
 	if (prevInput.size() <= idx) return false;
 
+	int test_keys = prevInput[idx].keys;
+	if (cond & isolated)
+		test_keys &= c;
+	if (!(cond & ignored) && (test_keys | c) != c)
+		return false;
+
+	return cond & matchall ? test_keys == c : test_keys & c;
+
+}
+
+/*
+bool InputManager::hasCommandBsc(int c, int idx)
+{
+	if (prevInput.size() <= idx) return false;
 	return prevInput[idx].keys & c;
 }
 
+bool InputManager::hasCommandMed(int c, int idx)
+{
+	if (prevInput.size() <= idx ) return false;
+	else if ((prevInput[idx].keys | c) != c) return false;
+	return prevInput[idx].keys & c;
+}
 
 bool InputManager::hasCommandAdv(int c, int idx)
 {
 	if (prevInput.size() <= idx) return false;
 	return prevInput[idx].keys == c;
 }
+*/
 
 int InputManager::getDir()
 {

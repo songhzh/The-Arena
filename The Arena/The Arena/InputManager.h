@@ -16,13 +16,21 @@ public:
 	const int b1_m		= 1 << B1;
 	const int b2_m		= 1 << B2;
 
+	const int isolated	= 1 << 0; // only compares bits in c (otherwise all bits in keys), not needed for single keys
+	const int ignored	= 1 << 1; // ignores other bits (otherwise all bits not in c must be off), mutually exclusive with isolated
+	const int matchall	= 1 << 2; // all bits must match (otherwise at least one), not needed for single keys
+
 	InputManager();
 	~InputManager();
 	void init(Role r);
 	void update();
 	void getInput();
-	bool hasCommandBsc(int c, int idx); // bits in c act as OR
-	bool hasCommandAdv(int c, int idx); // bits in c act as AND
+	bool hasCommand(int c, int idx, int cond); 
+	/*
+	bool hasCommandBsc(int c, int idx); // input has at least 1 bit in c, overrides med and adv
+	bool hasCommandMed(int c, int idx); // input has only & at least 1 bit in c, overrides adv
+	bool hasCommandAdv(int c, int idx); // input has exactly all bits in c
+	*/
 	int getDir();
 	bool getCrouch();
 private:

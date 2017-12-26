@@ -14,6 +14,7 @@ void Player::init(sf::Vector2f p)
 	ground = pos.y;
 	vel = { 0, 0 };
 	acc = { 0, 3 };
+	ultCharge = 0;
 }
 
 void Player::update(int dir, float sm, int dlock)
@@ -24,6 +25,8 @@ void Player::update(int dir, float sm, int dlock)
 	if (pos.y > ground)
 		pos.y = ground;
 	updateAnimation();
+	if (ultCharge < ultCharge_max)
+		ultCharge++;
 }
 
 void Player::updateAnimation()
@@ -48,4 +51,14 @@ bool Player::onGround()
 sf::Vector2f Player::getPos()
 {
 	return pos;
+}
+
+bool Player::useUlt()
+{
+	if (ultCharge == ultCharge_max)
+	{
+		ultCharge = 0;
+		return true;
+	}
+	return false;
 }

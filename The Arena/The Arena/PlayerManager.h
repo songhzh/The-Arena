@@ -9,8 +9,7 @@
 
 class PlayerManager
 {
-	enum MoveBsc { NOBSC, PUNCH, KICK, JUMP, WALK, CROUCH };
-	enum MoveAdv { NOADV, ULTIMATE, BACKSTEP, TRIPLE };
+	enum MoveList { NONE, PUNCH, PUNCH_WALK, KICK, JUMP, WALK, CROUCH, ULTIMATE, BACKSTEP, TRIPLE };
 
 public:
 	PlayerManager();
@@ -21,8 +20,7 @@ public:
 	void keyPressed();
 private:
 	void checkAnim();
-	MoveBsc getMoveBsc();
-	MoveAdv getMoveAdv();
+	MoveList getMoveList();
 	void loadAnimations();
 	void moveEffect();
 

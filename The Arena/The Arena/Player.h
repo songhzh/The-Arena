@@ -13,16 +13,18 @@ public:
 	bool onGround();
 	void jump();
 	sf::Vector2f getPos();
+	bool useUlt();
 private:
+	void walk(float dir, float sm);
+	
 	sf::Vector2f pos;
 	sf::Vector2f vel;
 	sf::Vector2f acc;
-
-	void walk(float dir, float sm);
-	
 	void updateAnimation();
 	float walkSpd = 20;
 	float jumpSpd = -50;
 	float ground;
+	int ultCharge;
+	const int ultCharge_max = 300;
 };
 
